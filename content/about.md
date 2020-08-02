@@ -9,7 +9,7 @@ weight: 50
 为本博客提供技术支持的平台：
 
 * 博客生成平台：[Hugo](https://gohugo.io/)
-* 博客主题：[Even](https://github.com/olOwOlo/hugo-theme-even)
+* 博客主题：[Notepadium](https://themes.gohugo.io/hugo-notepadium/)
 * 博客代码托管：[GitHub](https://github.com/)
 * 网站服务器供应商：[GitHub Pages](https://pages.github.com/)
 * 域名服务商：[Dynadot](https://www.dynadot.com/)
