@@ -1,5 +1,5 @@
 baseURL = "https://jze.us"
-title = "周一的笔记本"
+title = "蜀山小筑"
 theme = "hugo-notepadium"
 copyright = "©2019 Notepadium."
 
@@ -66,7 +66,7 @@ url = "/about"
 [params.profile]
   enable = true
   avatar = "/img/avatar.jpg"
-  name = "周一"
+  name = "愚道"
   bio = "求知若渴，虚心若愚"  # support markdown syntax
 # twitter = "https://twitter.com/"  # https://twitter.com/XXX
 #  github = "YALEAX"  # https://github.com/XXX
