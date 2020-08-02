@@ -1,0 +1,80 @@
+baseURL = "https://jze.us"
+title = "周一的笔记本"
+theme = "hugo-notepadium"
+copyright = "©2019 Notepadium."
+
+languageCode = "zh-cn"
+hasCJKLanguage = true
+
+enableRobotsTXT = true
+publishDir = "docs"
+# Enable Disqus
+#disqusShortname = "XXX"
+
+# Google Analytics
+#googleAnalytics = "UA-123-45"
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true  # enable raw HTML in Markdown
+
+[params]
+style = "auto"  # default: auto. light: light theme, dark: dark theme, auto: based on system.
+dateFormat = "Monday, January 2, 2006"  # if unset, default is "2006-01-02"
+logo = "/img/logo.png"  # if you have a logo png
+slogan = "「求知若渴，虚心若愚」"
+license = ""  # CC License
+fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, default is false.
+
+
+[params.comments]
+enable = false  # En/Disable comments globally, default: false. You can always enable comments on per page.
+
+[params.math]
+enable = true  # optional: true, false. Enable globally, default: false. You can always enable math on per page.
+use = "katex"  # option: "katex", "mathjax". default: "katex"
+
+[params.syntax]
+use = "hljs"  # builtin: "prismjs", "hljs". "none" means Chroma
+theme = "xcode-dark"
+darkTheme = "xcode-dark"  # apply this theme in dark mode
+
+[params.share]
+enable = false
+addThisId = ""
+inlineToolId = ""
+
+
+# custom navigation items
+
+[[params.nav.custom]]
+title = "主页"
+url = "/"
+[[params.nav.custom]]
+title = "标签"
+url = "/tags"
+[[params.nav.custom]]
+title = "分类"
+url = "/categories"
+[[params.nav.custom]]
+title = "关于我"
+url = "/about"
+
+[params.profile]
+  enable = true
+  avatar = "/img/avatar.jpg"
+  name = "周一"
+  bio = "求知若渴，虚心若愚"  # support markdown syntax
+# twitter = "https://twitter.com/"  # https://twitter.com/XXX
+#  github = "YALEAX"  # https://github.com/XXX
+#  docker = "XXX"  # https://hub.docker.com/u/XXX
+#  email = "Joey@JzE.us"  # mailto:XX	X@mail.com
+
+# for chinese
+[params.beian]
+  icp = ""     
+  gongan = ""    
+  code = ""    

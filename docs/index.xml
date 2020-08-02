@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>周一的笔记本</title>
+    <link>/</link>
+    <description>Recent content on 周一的笔记本</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2019 Notepadium.</copyright>
+    <lastBuildDate>Tue, 28 Jul 2020 00:07:38 +0800</lastBuildDate>
+    
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于我</title>
+      <link>/about/</link>
+      <pubDate>Sun, 10 Nov 2019 11:49:51 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>为本博客提供技术支持的平台： 博客生成平台：Hugo 博客主题：Even 博客代码托管：GitHub 网站服务器供应商：GitHub Pages 域名服务商：D</description>
+      
+    </item>
+    
+    <item>
+      <title>Posts</title>
+      <link>/post/</link>
+      <pubDate>Tue, 28 Jul 2020 00:07:38 +0800</pubDate>
+      
+      <guid>/post/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/archives/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
