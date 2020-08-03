@@ -17,14 +17,14 @@ categories:
 git config -l | grep url
 ```
 
-你将获得类似下面这样的地址，复制后面的: `yaleax/qpf.pub.git`
+你将获得类似下面这样的地址，复制后面的: `yaleax/jze.us.git`
 
 `remote.origin.url=https://github.com/yaleax/qpf.pub.git`
 
 ### 3.重新连接目录到 Github
 
 ```bash
-git remote set-url origin git@github.com:yaleax/qpf.pub.git
+git remote set-url origin git@github.com:yaleax/jze.us.git
 ```
 
 完成，祝你好运。
