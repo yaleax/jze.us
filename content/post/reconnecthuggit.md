@@ -19,7 +19,7 @@ git config -l | grep url
 
 你将获得类似下面这样的地址，复制后面的: `yaleax/jze.us.git`
 
-`remote.origin.url=https://github.com/yaleax/qpf.pub.git`
+`remote.origin.url=https://github.com/yaleax/jze.us.git`
 
 ### 3.重新连接目录到 Github
 
