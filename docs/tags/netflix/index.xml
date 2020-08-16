@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>NetFlix on 蜀山小筑</title>
+    <link>/tags/netflix/</link>
+    <description>Recent content in NetFlix on 蜀山小筑</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2020 蜀山小筑.</copyright>
+    <lastBuildDate>Mon, 03 Aug 2020 16:34:34 +0800</lastBuildDate>
+    
+        <atom:link href="/tags/netflix/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Netlifxdns</title>
+      <link>/draft/netlifxdns/</link>
+      <pubDate>Mon, 03 Aug 2020 16:34:34 +0800</pubDate>
+      
+      <guid>/draft/netlifxdns/</guid>
+      <description>前言</description>
+      
+    </item>
+    
+  </channel>
+</rss>

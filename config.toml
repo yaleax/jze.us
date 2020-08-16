@@ -1,7 +1,7 @@
 baseURL = "https://jze.us"
 title = "蜀山小筑"
 theme = "hugo-notepadium"
-copyright = "©2019 Notepadium."
+copyright = "©2020 蜀山小筑."
 
 languageCode = "zh-cn"
 hasCJKLanguage = true
@@ -9,7 +9,7 @@ hasCJKLanguage = true
 enableRobotsTXT = true
 publishDir = "docs"
 # Enable Disqus
-#disqusShortname = "XXX"
+disqusShortname = "shu-shan-xiao-zhu"
 
 # Google Analytics
 #googleAnalytics = "UA-123-45"
@@ -31,7 +31,7 @@ fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, de
 
 
 [params.comments]
-enable = false  # En/Disable comments globally, default: false. You can always enable comments on per page.
+enable = true  # En/Disable comments globally, default: false. You can always enable comments on per page.
 
 [params.math]
 enable = true  # optional: true, false. Enable globally, default: false. You can always enable math on per page.
@@ -39,7 +39,7 @@ use = "katex"  # option: "katex", "mathjax". default: "katex"
 
 [params.syntax]
 use = "hljs"  # builtin: "prismjs", "hljs". "none" means Chroma
-theme = "xcode-dark"
+theme = "dracula"
 darkTheme = "xcode-dark"  # apply this theme in dark mode
 
 [params.share]

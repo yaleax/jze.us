@@ -6,8 +6,8 @@
     <description>Recent content on 蜀山小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2019 Notepadium.</copyright>
-    <lastBuildDate>Tue, 28 Jul 2020 00:07:38 +0800</lastBuildDate>
+    <copyright>©2020 蜀山小筑.</copyright>
+    <lastBuildDate>Mon, 03 Aug 2020 16:34:34 +0800</lastBuildDate>
     
         <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,16 @@
       
       <guid>/about/</guid>
       <description>为本博客提供技术支持的平台： 博客生成平台：Hugo 博客主题：Notepadium 博客代码托管：GitHub 网站服务器供应商：GitHub Pages 域</description>
+      
+    </item>
+    
+    <item>
+      <title>Drafts</title>
+      <link>/draft/</link>
+      <pubDate>Mon, 03 Aug 2020 16:34:34 +0800</pubDate>
+      
+      <guid>/draft/</guid>
+      <description></description>
       
     </item>
     
