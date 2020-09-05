@@ -7,6 +7,14 @@ languageCode = "zh-cn"
 hasCJKLanguage = true
 
 enableRobotsTXT = true
+#toc = true                                                                            # 是否开启目录
+#autoCollapseToc = false   # Auto expand and collapse toc                              # 目录自动展开/折叠
+#fancybox = true           # see https://github.com/fancyapps/fancybox  
+#moreMeta = true
+
+
+
+
 publishDir = "docs"
 # Enable Disqus
 disqusShortname = "shu-shan-xiao-zhu"
