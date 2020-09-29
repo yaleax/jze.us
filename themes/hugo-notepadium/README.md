@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/cntrump/hugo-notepadium/master/images/screenshot.png)
 
-# Notepadium ![](https://img.shields.io/badge/license-MIT-blue.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/2f389751-e070-437b-9dbd-3773bd57322e/deploy-status)](https://lvv.me)
+# Notepadium [![Build Status](https://travis-ci.org/cntrump/hugo-notepadium.svg?branch=master)](https://travis-ci.org/cntrump/hugo-notepadium)
 
 Request Hugo Version: [0.60.0+](https://github.com/gohugoio/hugo/releases/)
 
@@ -10,11 +10,11 @@ Features
 
 - Logo and slogan
 - Navigation items
-- Syntanx highlighting
+- Syntax highlighting
 - Math supporting
 - Comments powered by Disqus
 - CC License
-- Pagination with large number of pages supporting
+- Pagination with a large number of pages supporting
 - Light & Dark Mode
 - Google analytics supporting
 - Custom CSS/SASS/SCSS supporting
