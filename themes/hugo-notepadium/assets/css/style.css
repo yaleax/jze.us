@@ -1,25 +1,42 @@
-.color-orange { color: #d28e5d;}
-.color-red { color: #dc3c3c;}
-.color-fusia { color: #b73999;}
-.color-purple { color: #8485ce;}
-.color-forest-green { color: #64878f;}
-.color-mint-green { color: #95c76f;}
-.color-green { color: #52bd58;}
-.color-blue-green { color: #00aba5;}
-.color-blue { color: #4670d8;}
-.bg-dark { background-color: #20222B; }
-
 :root {
   color-scheme: light dark;
   supported-color-schemes: light dark;
 }
 
+/* Works on Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: rgba(0, 0, 0, 0.175) transparent
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+  height: 12px
+}
+
+*::-webkit-scrollbar-track-piece {
+  background: transparent
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.175);   /* color of the scroll thumb */
+  background-clip: padding-box;
+  border-radius: 6px;       /* roundness of the scroll thumb */
+  border: 2px solid transparent  /* creates padding around scroll thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35)
+}
+
 html {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI',
-    Ubuntu, Roboto, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', Helvetica, Arial, Verdana, 'Lucida Grande',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  font-size: 17px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'Microsoft YaHei', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -36,6 +53,11 @@ body {
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   -moz-hyphens: auto;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
 
   padding-top: constant(safe-area-inset-top);
   padding-right: constant(safe-area-inset-right);
@@ -59,7 +81,7 @@ h6 {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.75em;
 }
 
 h2 {
@@ -75,21 +97,17 @@ h4 {
 }
 
 h5 {
-  font-size: .875em;
+  font-size: .85em;
 }
 
 h6 {
-  font-size: .85em;
+  font-size: .7em;
 }
 
 blockquote,
 q {
   quotes: none;
   margin: 0;
-}
-
-::selection {
-  background-color: #fffed5;
 }
 
 mark {
@@ -106,7 +124,7 @@ code,
 tt,
 kbd,
 samp {
-  font-family: Menlo, Consolas, 'Liberation Mono', monospace;
+  font-family: Menlo, Consolas, Monaco, 'Courier New', 'Ubuntu Mono', monospace, serif;
   font-weight: 400;
   font-size: 85%;
 }
@@ -114,7 +132,7 @@ samp {
 pre {
   display: block;
   text-align: left;
-  font-size: 85%;
+  font-size: 80%;
   line-height: 1.5em;
   margin: 0;
   padding: 16px;
@@ -229,7 +247,7 @@ b {
 #content {
   display: block;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 744px;
 }
 
 #footer {
@@ -326,7 +344,7 @@ b {
 .note.list .item {
   width: 100%;
   margin-top: 16px;
-  padding: 20px;
+  padding: 32px;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: inset -1px 0 0 0 rgba(224, 227, 231, .6),
@@ -546,7 +564,7 @@ b {
 }
 
 .article-container {
-  padding: 20px;
+  padding: 32px;
   border-radius: 6px;
   box-shadow: 0 12px 16px 0 rgba(29, 43, 76, .12);
 }
@@ -585,32 +603,6 @@ b {
 
 .article.markdown-body img {
   border-radius: 3px;
-
-  -ms-transform: scale(1);
-  -ms-transition: transform 0.25s ease-in-out 0s;
-
-  -moz-transform: scale(1);
-  -moz-transition: transform 0.25s ease-in-out 0s;
-
-  -webkit-transform: scale(1);
-  -webkit-transition: transform 0.25s ease-in-out 0s;
-
-  transform: scale(1);
-  transition: transform 0.25s ease-in-out 0s;
-}
-
-.article.markdown-body img:hover {
-  -ms-transform: scale(1.04);
-  -ms-transition: transform 0.25s ease-in-out 0s;
-
-  -moz-transform: scale(1.04);
-  -moz-transition: transform 0.25s ease-in-out 0s;
-
-  -webkit-transform: scale(1.04);
-  -webkit-transition: transform 0.25s ease-in-out 0s;
-
-  transform: scale(1.04);
-  transition: transform 0.25s ease-in-out 0s;
 }
 
 .article.markdown-body blockquote,
@@ -715,9 +707,10 @@ b {
   padding-right: 15px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1012px) {
   .note.list .item,
   .article-container {
+    padding: 24px;
     border-radius: 0;
     box-shadow: none;
   }

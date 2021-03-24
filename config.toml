@@ -79,7 +79,7 @@ url = "/about"
 # twitter = "https://twitter.com/"  # https://twitter.com/XXX
   github = "YALEAX"  # https://github.com/XXX
 #  docker = "XXX"  # https://hub.docker.com/u/XXX
-  email = "Joey@JzE.us"  # mailto:XX	X@mail.com
+  email = "Qu@JzE.us"  # mailto:XX	X@mail.com
 
 # for chinese
 [params.beian]

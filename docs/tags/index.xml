@@ -1,25 +1,105 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 蜀山小筑</title>
-    <link>/tags/</link>
+    <link>https://jze.us/tags/</link>
     <description>Recent content in Tags on 蜀山小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>©2021 蜀山小筑.</copyright>
     <lastBuildDate>Tue, 28 Jul 2020 00:07:38 +0800</lastBuildDate>
     
-        <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jze.us/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>GitHub</title>
-      <link>/tags/github/</link>
+      <title>关于我</title>
+      <link>https://jze.us/about/</link>
+      <pubDate>Sun, 10 Nov 2019 11:49:51 +0000</pubDate>
+      
+      <guid>https://jze.us/about/</guid>
+      <description>&lt;p&gt;为本博客提供技术支持的平台：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客生成平台：&lt;a href=&#34;https://gohugo.io/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Hugo&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;博客主题：&lt;a href=&#34;https://themes.gohugo.io/hugo-notepadium/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Notepadium&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;博客代码托管：&lt;a href=&#34;https://github.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;GitHub&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;网站服务器供应商：&lt;a href=&#34;https://pages.github.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;GitHub Pages&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;域名服务商：&lt;a href=&#34;https://www.dynadot.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Dynadot&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;DNS服务商：&lt;a href=&#34;https://www.cloudflare.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;CloudFlare&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;域名证书：&lt;a href=&#34;https://letsencrypt.org/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;CDN网络加速：&lt;a href=&#34;https://www.cloudflare.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;CloudFlare&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title> 让目录重新连接 Github</title>
+      <link>https://jze.us/post/reconnecthuggit/</link>
       <pubDate>Tue, 28 Jul 2020 00:07:38 +0800</pubDate>
       
-      <guid>/tags/github/</guid>
-      <description></description>
+      <guid>https://jze.us/post/reconnecthuggit/</guid>
+      <description>&lt;h3 id=&#34;1前言&#34;&gt;1.前言&lt;/h3&gt;
+&lt;p&gt;有两台电脑，一台在家，另外一台在公司，通过 Dropbox 可以让两个目录文件一致。如果想上传修改到 Github 还需要重新连接一下。这个教程的前提是，你已经复制了id_rsa.pub文件到正确的位置。&lt;/p&gt;
+&lt;h3 id=&#34;2获得当前目录github-地址&#34;&gt;2.获得当前目录Github 地址&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config -l &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep url
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你将获得类似下面这样的地址，复制后面的: &lt;code&gt;yaleax/jze.us.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;remote.origin.url=https://github.com/yaleax/jze.us.git&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3重新连接目录到-github&#34;&gt;3.重新连接目录到 Github&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote set-url origin git@github.com:yaleax/jze.us.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;完成，祝你好运。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Github或 Git命令使用</title>
+      <link>https://jze.us/post/git/</link>
+      <pubDate>Sun, 17 Nov 2019 11:02:02 +0000</pubDate>
       
+      <guid>https://jze.us/post/git/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;使用了Hugo静态博客后，才开始正式使用GitHub，经过一段时间的使用，发现GitHub真好用，现在把一些关键信息记录下来。&lt;/p&gt;
+&lt;h2 id=&#34;github&#34;&gt;GitHub&lt;/h2&gt;
+&lt;h3 id=&#34;1生成密钥&#34;&gt;1.生成密钥&lt;/h3&gt;
+&lt;p&gt;生成密钥后，需要把密钥复制到GitHub的 SSH keys里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -C &amp;quot;`此处填写你的邮箱地址`&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;2初始化&#34;&gt;2.初始化&lt;/h3&gt;
+&lt;p&gt;进入想建立 Git 的文件夹&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git init
+git add .
+git commit -m &amp;quot;first commit&amp;quot;
+git remote add origin git@github.com:yaleax/jze.us.git #请更换城你自己的仓库
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;3-推送更新到远程-github仓库&#34;&gt;3. 推送更新到远程 GitHub仓库&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;git add &amp;lt;修改的文件&amp;gt;
+git commit -m &amp;quot;填写更新备注&amp;quot;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;4-下载远程-github-仓库的更新&#34;&gt;4. 下载远程 GitHub 仓库的更新&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;git pull
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;5-生成页面然后上传到-github仓库&#34;&gt;5. 生成页面然后上传到 GitHub仓库&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;hugo -D
+git add .
+git commit -m &amp;quot;update&amp;quot;
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;github命令速查表&#34;&gt;GitHub命令速查表&lt;/h3&gt;
+&lt;p&gt;&lt;img  src=&#34;https://jze.us/img/git.png&#34;
+        alt/&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jze.us/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jze.us/archives/</guid>
+      <description></description>
     </item>
     
   </channel>
