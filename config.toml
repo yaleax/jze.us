@@ -33,7 +33,7 @@ unsafe = true  # enable raw HTML in Markdown
 style = "auto"  # default: auto. light: light theme, dark: dark theme, auto: based on system.
 dateFormat = "Monday, January 2, 2006"  # if unset, default is "2006-01-02"
 logo = "/img/logo.png"  # if you have a logo png
-slogan = "「Less is More」"
+slogan = "「少即使多」"
 license = "版权声明：如果转发请带上本文链接和注明来源。"  # CC License
 fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, default is false.
 
