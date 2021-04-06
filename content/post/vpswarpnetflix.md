@@ -53,7 +53,7 @@ nano wgcf-profile.conf
 
 ### 3.5 配置内容(给ipv4增加IPv6地址)
 
-```config 
+```json
 [Interface]
 PrivateKey = mIGbBq8ZLrsgnDM0fwjfd7Qu4cIbjf7ZhvnX3KE8N2o=
 Address = 172.16.0.2/32
@@ -108,7 +108,6 @@ sudo systemctl enable wg-quick@wgcf
 
 ```bash
 grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
-
 ```
 
 ### 4.2 通过代理设置IPv6优先

@@ -22,17 +22,17 @@
 </code></pre><h3 id="34-修改wireguard配置">3.4 修改Wireguard配置</h3>
 <pre><code>nano wgcf-profile.conf
 </code></pre><h3 id="35-配置内容给ipv4增加ipv6地址">3.5 配置内容(给ipv4增加IPv6地址)</h3>
-<pre><code class="language-config" data-lang="config">[Interface]
-PrivateKey = mIGbBq8ZLrsgnDM0fwjfd7Qu4cIbjf7ZhvnX3KE8N2o=
-Address = 172.16.0.2/32
-Address = fd01:5ca1:ab1e:881c:570:1058:47ee:23f1/128
-DNS = 9.9.9.10,8.8.8.8,1.1.1.1
-MTU = 1280
-[Peer]
-PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
-AllowedIPs = ::/0
-Endpoint = 162.159.192.1:2408
-</code></pre><h3 id="36-移动配置到wireguard目录">3.6 移动配置到Wireguard目录</h3>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">[</span><span class="err">Interface</span><span class="p">]</span>
+<span class="err">PrivateKey</span> <span class="err">=</span> <span class="err">mIGbBq</span><span class="mi">8</span><span class="err">ZLrsgnDM</span><span class="mi">0</span><span class="err">fwjfd</span><span class="mi">7</span><span class="err">Qu</span><span class="mi">4</span><span class="err">cIbjf</span><span class="mi">7</span><span class="err">ZhvnX</span><span class="mi">3</span><span class="err">KE</span><span class="mi">8</span><span class="err">N</span><span class="mi">2</span><span class="err">o=</span>
+<span class="err">Address</span> <span class="err">=</span> <span class="mf">172.16</span><span class="err">.</span><span class="mf">0.2</span><span class="err">/</span><span class="mi">32</span>
+<span class="err">Address</span> <span class="err">=</span> <span class="err">fd</span><span class="mi">01</span><span class="err">:</span><span class="mi">5</span><span class="err">ca</span><span class="mi">1</span><span class="err">:ab</span><span class="mi">1</span><span class="err">e:</span><span class="mi">881</span><span class="err">c:</span><span class="mi">570</span><span class="err">:</span><span class="mi">1058</span><span class="err">:</span><span class="mi">47</span><span class="err">ee:</span><span class="mi">23</span><span class="err">f</span><span class="mi">1</span><span class="err">/</span><span class="mi">128</span>
+<span class="err">DNS</span> <span class="err">=</span> <span class="mf">9.9</span><span class="err">.</span><span class="mf">9.10</span><span class="err">,</span><span class="mf">8.8</span><span class="err">.</span><span class="mf">8.8</span><span class="err">,</span><span class="mf">1.1</span><span class="err">.</span><span class="mf">1.1</span>
+<span class="err">MTU</span> <span class="err">=</span> <span class="mi">1280</span>
+<span class="p">[</span><span class="err">Peer</span><span class="p">]</span>
+<span class="err">PublicKey</span> <span class="err">=</span> <span class="err">bmXOC+F</span><span class="mi">1</span><span class="err">FxEMF</span><span class="mi">9</span><span class="err">dyiK</span><span class="mi">2</span><span class="err">H</span><span class="mi">5</span><span class="err">/</span><span class="mi">1</span><span class="err">SUtzH</span><span class="mi">0</span><span class="err">JuVo</span><span class="mi">51</span><span class="err">h</span><span class="mi">2</span><span class="err">wPfgyo=</span>
+<span class="err">AllowedIPs</span> <span class="err">=</span> <span class="err">::/</span><span class="mi">0</span>
+<span class="err">Endpoint</span> <span class="err">=</span> <span class="mf">162.159</span><span class="err">.</span><span class="mf">192.1</span><span class="err">:</span><span class="mi">2408</span>
+</code></pre></div><h3 id="36-移动配置到wireguard目录">3.6 移动配置到Wireguard目录</h3>
 <pre><code>sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 </code></pre><h3 id="37-启动wireguard">3.7 启动Wireguard</h3>
 <pre><code>sudo wg-quick up wgcf
@@ -51,7 +51,6 @@ sudo systemctl enable wg-quick@wgcf
 </code></pre><h2 id="四代理设置">四、代理设置</h2>
 <h3 id="41-ipv6-优先">4.1 IPv6 优先</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">grep -qE <span class="s1">&#39;^[ ]*label[ ]*2002::/16[ ]*2&#39;</span> /etc/gai.conf <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;label 2002::/16   2&#39;</span> <span class="p">|</span> sudo tee -a /etc/gai.conf
-
 </code></pre></div><h3 id="42-通过代理设置ipv6优先">4.2 通过代理设置IPv6优先</h3>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;outbounds&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
