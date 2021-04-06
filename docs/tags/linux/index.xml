@@ -1,14 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub on 蜀山小筑</title>
-    <link>https://jze.us/tags/github/</link>
-    <description>Recent content in GitHub on 蜀山小筑</description>
+    <title>Linux on 蜀山小筑</title>
+    <link>https://jze.us/tags/linux/</link>
+    <description>Recent content in Linux on 蜀山小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>©2021 蜀山小筑.</copyright>
-    <lastBuildDate>Tue, 28 Jul 2020 00:07:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 06 Apr 2021 11:36:27 +0800</lastBuildDate>
     
-        <atom:link href="https://jze.us/tags/github/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jze.us/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
