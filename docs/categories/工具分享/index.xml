@@ -105,7 +105,7 @@ sudo systemctl enable wg-quick@wgcf
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /opt/de_GWD/vtrui/config.json
 systemctl restart vtrui
 nano /etc/wireguard/wgcf.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;六引用&#34;&gt;六、引用&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;六参考&#34;&gt;六、参考&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://hiram.wang/cloudflare-wrap-vps/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;在VPS上部署WARP来进行流量加密并解锁Netflix和Google验证码（无损实现IPv4/IPv6双栈） | Hiram Home&lt;/a&gt;
 &lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://p3terx.com/archives/use-cloudflare-warp-to-add-extra-ipv4-or-ipv6-network-support-to-vps-servers-for-free.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;使用 Cloudflare WARP 给 VPS 服务器免费添加 IPv4 或 IPv6 网络支持 - P3TERX ZONE&lt;/a&gt;

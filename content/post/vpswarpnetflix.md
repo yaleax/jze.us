@@ -5,6 +5,8 @@ tags:
   - Netflix
   - Linux
   - Wireguard
+categories:
+  - 教程
 ---
 
 
@@ -134,7 +136,7 @@ nano /etc/wireguard/wgcf.conf
 
 
 
-## 六、引用
+## 六、参考
 
 [在VPS上部署WARP来进行流量加密并解锁Netflix和Google验证码（无损实现IPv4/IPv6双栈） | Hiram Home](https://hiram.wang/cloudflare-wrap-vps/)
 
