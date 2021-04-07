@@ -13,7 +13,7 @@ weight: 50
 * 博客代码托管：[GitHub](https://github.com/)
 * 网站服务器供应商：[Cloudflare Pages](https://pages.cloudflare.com/)
 * 域名服务商：[Dynadot](https://www.dynadot.com/)
-* DNS服务商：[CloudFlare](https://www.cloudflare.com/)
+* DNS服务商：[CloudFlare](https://www.cloudflare.com/dns/)
 * 域名证书：[Let's Encrypt](https://letsencrypt.org/)
-* CDN网络加速：[CloudFlare](https://www.cloudflare.com/)
+* CDN网络加速：[CloudFlare](https://www.cloudflare.com/cdn/)
 
