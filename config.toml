@@ -3,14 +3,16 @@ title = "蜀山小筑"
 theme = "hugo-notepadium"
 copyright = "©2021 蜀山小筑."
 
-languageCode = "zh-cn"
+languageCode = "zh"  # for the RSS generation
+defaultContentLanguage = "zh"
+
 hasCJKLanguage = true
 
 enableRobotsTXT = true
-#toc = true                                                                            # 是否开启目录
-#autoCollapseToc = false   # Auto expand and collapse toc                              # 目录自动展开/折叠
-#fancybox = true           # see https://github.com/fancyapps/fancybox  
-#moreMeta = true
+toc = true                                                                            # 是否开启目录
+autoCollapseToc = true   # Auto expand and collapse toc                              # 目录自动展开/折叠
+fancybox = true           # see https://github.com/fancyapps/fancybox  
+moreMeta = true
 
 
 
@@ -46,9 +48,9 @@ enable = true  # optional: true, false. Enable globally, default: false. You can
 use = "katex"  # option: "katex", "mathjax". default: "katex"
 
 [params.syntax]
-use = "hljs"  # builtin: "prismjs", "hljs". "none" means Chroma
-theme = "dracula"
-darkTheme = "xcode-dark"  # apply this theme in dark mode
+use = "none"  # builtin: "prismjs", "hljs". "none" means Chroma
+theme = "github" # dracula
+darkTheme = "dracula"  # apply this theme in dark mode xcode-dark
 
 [params.share]
 enable = false
