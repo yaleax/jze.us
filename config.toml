@@ -19,7 +19,7 @@ moreMeta = true
 
 publishDir = "docs"
 # Enable Disqus
-disqusShortname = "shu-shan-xiao-zhu"
+#disqusShortname = "shu-shan-xiao-zhu"
 
 # Google Analytics
 #googleAnalytics = "UA-123-45"
