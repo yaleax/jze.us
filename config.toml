@@ -44,7 +44,7 @@ license = "版权声明：如果转发请带上本文链接和注明来源。"  
 fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, default is false.
 
 [params.comments.utterances]
-repo = "jze.us/yaleax" # enable comments with [utteranc.es](https://utteranc.es/)
+repo = "jze.us/yaleax.github.io" # enable comments with [utteranc.es](https://utteranc.es/)
 
 [params.comments]
 enable = true  # En/Disable comments globally, default: false. You can always enable comments on per page.
