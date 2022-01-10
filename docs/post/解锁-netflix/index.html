@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh"><meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>利用Dnsmasq SNIproxy解锁 Netflix在 Ubuntu18.04 服务器上&nbsp;&ndash;&nbsp;蜀山小筑</title><link rel="stylesheet" href="/css/core.min.2b84579068bd8ec3d1cd26c1d4177c5a85fee2eba66d7cd5aa289e9b7aef0a612b119e4bc14d850c83d270f4b192374c.css" integrity="sha384-K4RXkGi9jsPRzSbB1Bd8WoX&#43;4uumbXzVqiiem3rvCmErEZ5LwU2FDIPScPSxkjdM"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="利用Dnsmasq SNIproxy解锁 Netflix在 Ubuntu18.04 服务器上" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name">蜀山小筑</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">主页</a><a class="nav item" href="/tags">标签</a><a class="nav item" href="/categories">分类</a><a class="nav item" href="/about">关于我</a></nav></div></span></div><div class="site slogan"><span class="title">「少即多,慢则快」</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">利用Dnsmasq SNIproxy解锁 Netflix在 Ubuntu18.04 服务器上</h1><p class="article date">Sunday, November 17, 2019</p></section><article class="article markdown-body"><h2 id="一原理">一、原理</h2>
+<p>Dnsmasq SNIproxy一键脚本，是利用Dnsmasq的DNS将网站解析劫持到SNI proxy反向代理的页面上。</p>
+<h2 id="二必要条件">二、必要条件</h2>
+<h3 id="1可以看-netlify的服务器">1.可以看 Netlify的服务器</h3>
+<h3 id="2想要解锁的服务器">2.想要解锁的服务器</h3>
+<h2 id="三教程第1部分">三、教程第1部分</h2>
+<pre><code>在可以看Netlify的服务器上输入下面的命令
+</code></pre><h3 id="1关闭dnsmasq">1.关闭dnsmasq</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/systemd/resolved.conf
+</code></pre></div><h3 id="2修改文件">2.修改文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">DNSStubListener</span><span class="o">=</span>no
+</code></pre></div><h3 id="3重启服务器">3.重启服务器</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">reboot
+</code></pre></div><h3 id="4安装解锁工具">4.安装解锁工具</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq_sniproxy.sh <span class="o">&amp;&amp;</span> bash dnsmasq_sniproxy.sh -i
+</code></pre></div><pre><code>wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq_sniproxy.sh &amp;&amp; bash dnsmasq_sniproxy.sh -u
+</code></pre><h3 id="5重启服务器">5.重启服务器</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">reboot
+</code></pre></div><h2 id="四教程第2部分">四、教程第2部分</h2>
+<pre><code>在想要解锁的服务器上输入下面的命令
+</code></pre><h3 id="1设置-ip">1.设置 ip</h3>
+<p>把下面代码里面的 ip 更改成，可以看 netflix 的服务器 ip。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> nameserver IP &gt; /etc/resolv.conf
+</code></pre></div><h3 id="2查看是否成功">2.查看是否成功</h3>
+<p>如果返回的 ip 是可以看 netflix 的服务器 ip，那么就说明成功了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ping -c4 netflix.com
+</code></pre></div><p>:tada: 完成\</p>
+<h2 id="五后话">五、后话</h2>
+<p>后来我发现另外一种解锁思路，现在分享在这里<a href="https://blog.mojxtang.com/784/"target="_blank" rel="noopener noreferrer">V2ray路由解锁Netflix</a>
+。</p>
+<h3 id="1原理">1.原理</h3>
+<p>在能看Netflix 的机器上安装 ss。在不能看 Netlify 的机器上使用 V2ray 连接能看Netflix 的机器上安装 ss。</p>
+<h3 id="2优点">2.优点</h3>
+<p>不占用53端口，所以 nat 机器也可以做为解锁机器了。</p>
+<h3 id="3v2ray配置">3.V2ray配置</h3>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;inbound&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="err">端口</span><span class="p">,</span>
+    <span class="nt">&#34;listen&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;vmess&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;clients&#34;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;更改&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;alterId&#34;</span><span class="p">:</span> <span class="mi">90</span>
+      <span class="p">}]</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;streamSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;ws&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;wsSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/store123455&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;outbound&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;freedom&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;outboundDetour&#34;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;shadowsocks&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;servers&#34;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;ip&#34;</span><span class="p">,</span> <span class="err">//shadwosockip</span>
+        <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;加密方式&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;密码&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="err">端口</span><span class="p">,</span>
+        <span class="nt">&#34;ota&#34;</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">}]</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;tag&#34;</span><span class="p">:</span> <span class="s2">&#34;ban&#34;</span>
+  <span class="p">}],</span>
+  <span class="nt">&#34;routing&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;strategy&#34;</span><span class="p">:</span> <span class="s2">&#34;rules&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;domainStrategy&#34;</span><span class="p">:</span> <span class="s2">&#34;AsIs&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;field&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;domain&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&#34;domain:fast.com&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:netflix.com&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:netflix.net&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:nflxext.com&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:nflxso.net&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:nflxvideo.net&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;domain:nflximg.net&#34;</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;outboundTag&#34;</span><span class="p">:</span> <span class="s2">&#34;ban&#34;</span>
+      <span class="p">}]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="六最后">六、最后</h2>
+<p>后来我又发现一个办法可以实现解锁奈飞，并且这个好像更好。所以单独写了一篇文章，有兴趣你可以去看看。<a href="https://suan.su/post/clash-%E6%95%99%E7%A8%8B/"target="_blank" rel="noopener noreferrer">Clalsh教程</a>
+</p>
+</article><section class="article labels"><a class="tag" href=/tags/netflix/>Netflix</a><a class="tag" href=/tags/linux/>Linux</a></section><section class="article license">版权声明：如果转发请带上本文链接和注明来源。</section><section class="article author"><img class="avatar" src="/img/avatar.jpg" alt><p class="name">愚道</p><div class="bio">求知若渴，虚心若愚</div><div class="details"><a class="item" href="https://github.com/YALEAX" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-github"></span>&nbsp;YALEAX</a><a class="item" href="mailto:Qu@JzE.us" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-email"></span>&nbsp;Qu@JzE.us</a></div>
+</section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/%E8%B0%B7%E6%AD%8C%E4%BA%91%E6%88%96-ubuntu%E7%B3%BB%E7%BB%9F%E6%89%93%E5%BC%80-root-%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="iconfont icon-article"></span>谷歌云或 ubuntu系统打开 root 用户密码登录服务器</a></p><p><a class="link" href="/post/hello-world/"><span class="iconfont icon-article"></span>使用 Backblaze和Cloudflare Workers搭建可以自定义域名的免费图床 </a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 蜀山小筑.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a></p></div>
+</section><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script></body>
+
+</html>

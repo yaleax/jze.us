@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh"><meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>使用Hugo &#43;GitHub &#43; Netlify&#43;Netlify CMS，来制作个人免费静态博客&nbsp;&ndash;&nbsp;蜀山小筑</title><link rel="stylesheet" href="/css/core.min.2b84579068bd8ec3d1cd26c1d4177c5a85fee2eba66d7cd5aa289e9b7aef0a612b119e4bc14d850c83d270f4b192374c.css" integrity="sha384-K4RXkGi9jsPRzSbB1Bd8WoX&#43;4uumbXzVqiiem3rvCmErEZ5LwU2FDIPScPSxkjdM"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="使用Hugo &#43;GitHub &#43; Netlify&#43;Netlify CMS，来制作个人免费静态博客" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name">蜀山小筑</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">主页</a><a class="nav item" href="/tags">标签</a><a class="nav item" href="/categories">分类</a><a class="nav item" href="/about">关于我</a></nav></div></span></div><div class="site slogan"><span class="title">「少即多,慢则快」</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">使用Hugo +GitHub + Netlify+Netlify CMS，来制作个人免费静态博客</h1><p class="article date">Saturday, November 9, 2019</p></section><article class="article markdown-body"><h2 id="前言">前言</h2>
+<p>这是一篇手动创建Hugo博客的教程，跟着教程一步一步的进行，最终你将会得到一个类似我这样的博客，在这个过程中，如果你能用心思考，善用搜索，你将会理解，这些服务彼此是如何连接的，每一项服务的功能是什么，以及如何修改它们的配置文件。理解这些后，你就可以根据自己的需求，创建自己的博客组合了。如果不想手动创建，你也可以使用 <a href="https://www.stackbit.com/"target="_blank" rel="noopener noreferrer">Stackbit</a>
+来自动创建博客。它支持Hugo,Gatsby和Jekyll，后台管理支持Netlify CMS，Forestry和Contentful。关于<a href="https://suan.su/post/%E4%BD%BF%E7%94%A8stackbit-%E6%9D%A5%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"target="_blank" rel="noopener noreferrer">Stackbit的教程</a>
+，以后会写，先挖坑。</p>
+<h2 id="一技术总结">一、技术总结</h2>
+<p>经过一周的摸索和实践，终于把这个博客搭建成功了。简单总结一下本博客所使用的技术。</p>
+<ul>
+<li>博客生成平台：<a href="https://gohugo.io/"target="_blank" rel="noopener noreferrer">Hugo</a>
+</li>
+<li>博客主题：<a href="https://github.com/xianmin/hugo-theme-jane"target="_blank" rel="noopener noreferrer">Jane</a>
+</li>
+<li>博客代码托管：<a href="https://github.com/"target="_blank" rel="noopener noreferrer">GitHub</a>
+</li>
+<li>博客服务器供应商：<a href="https://www.netlify.com/"target="_blank" rel="noopener noreferrer">Netlify</a>
+</li>
+<li>博客后台管理平台：<a href="https://www.netlifycms.org/"target="_blank" rel="noopener noreferrer">Netlify CMS</a>
+</li>
+<li>域名服务商：<a href="https://ru-tld.ru/en/"target="_blank" rel="noopener noreferrer">RuTLD</a>
+</li>
+<li>DNS服务商：<a href="https://www.cloudflare.com/"target="_blank" rel="noopener noreferrer">CloudFlare</a>
+</li>
+<li>域名证书：<a href="https://www.cloudflare.com/"target="_blank" rel="noopener noreferrer">CloudFlare</a>
+</li>
+<li>CDN网络加速：<a href="https://www.cloudflare.com/"target="_blank" rel="noopener noreferrer">CloudFlare</a>
+</li>
+<li>图床：<a href="https://www.backblaze.com/"target="_blank" rel="noopener noreferrer">BackBlaze</a>
+</li>
+</ul>
+<p>上面提到的这些服务，除了购买域名需要花钱，其他服务都是免费的，购买域名也不是必要条件， Netlify 可以提供的二级域名。</p>
+<h2 id="二必要条件">二、必要条件</h2>
+<ol>
+<li>注册 <a href="https://github.com/join"target="_blank" rel="noopener noreferrer">GitHub</a>
+</li>
+<li>注册 <a href="https://app.netlify.com/signup"target="_blank" rel="noopener noreferrer">Netlify</a>
+</li>
+<li>注册 <a href="https://dash.cloudflare.com/sign-up"target="_blank" rel="noopener noreferrer">CloudFlare</a>
+</li>
+<li>一台可以访问网络的计算机</li>
+</ol>
+<h2 id="三博客使用的服务简介">三、博客使用的服务简介</h2>
+<ol>
+<li><a href="https://gohugo.io/"target="_blank" rel="noopener noreferrer">Hugo</a>
+ 是使用 Go 语言编写的，静态博客生成平台。使用Hugo平台，你可以快速的生成博客页面，因为是静态博客，所以访问者的载入速度是非常快的，静态博客对爬虫是很友好的，这样就利于被搜索引擎抓取网站。</li>
+<li><a href="https://www.netlify.com/"target="_blank" rel="noopener noreferrer">Netlify</a>
+ 提供免费的静态博客托管服务和免费二级域名：<a href="https://suan.netlify.com">https://suan.netlify.com</a>。</li>
+<li><a href="https://github.com/"target="_blank" rel="noopener noreferrer">GitHub</a>
+提供免费代码托管服务，Hugo 生成的代码，会存在这里里。</li>
+<li><a href="https://www.netlifycms.org/"target="_blank" rel="noopener noreferrer">Netlify CMS</a>
+是一套开源的后台管理平台，支持 Markdown 语法，给习惯在后台编辑文章的人使用。</li>
+<li><a href="https://www.cloudflare.com/"target="_blank" rel="noopener noreferrer">CloudFlare</a>
+拥有全球最大的网络之一，提供 CDN,DNS,ssl证书等服务,远不止这些。</li>
+</ol>
+<h2 id="四安装-hugo">四、安装 Hugo</h2>
+<h3 id="1ubuntu系统">1.Ubuntu系统：</h3>
+<p>先去 <a href="https://github.com/gohugoio/hugo/releases"target="_blank" rel="noopener noreferrer">Hugo release</a>
+查看 Hugo的最新版本，用最新版本号替代下面代码里面的0.59.1，你也可以直接复制下面的代码，进行下载和安装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#使用 wget 下载 hugo</span>
+wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.deb
+<span class="c1">#使用 dpkg 安装 .deb 文件</span>
+sudo dpkg -i hugo_0.59.1_Linux-64bit.deb
+</code></pre></div><h3 id="2macos-系统">2.MacOS 系统：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install hugo
+</code></pre></div><p>如果你没有<a href="https://brew.sh/"target="_blank" rel="noopener noreferrer">brew</a>
+包工具，你可以用下面的命令安装brew包工具</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/usr/bin/ruby -e <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&#34;</span>
+</code></pre></div><h2 id="五使用-hugo创建静态博客">五、使用 Hugo创建静态博客</h2>
+<h3 id="1创建网站存放目录">1.创建网站存放目录</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 mkdir命令，创建网站目录</span>
+mkdir -p /var/www
+<span class="c1"># 使用 cd命令，进入创建的目录</span>
+<span class="nb">cd</span> /var/www
+<span class="c1"># 新建站点，名字以3cho为例,你可以替换成自己的名字</span>
+hugo new site 3cho
+</code></pre></div><h3 id="2安装主题主题可以去hugo官方主题库httpsthemesgohugoio下载本文以-evenhttpsgithubcomolowolohugo-theme-even-主题为例">2.安装主题，主题可以去Hugo<a href="https://themes.gohugo.io/"target="_blank" rel="noopener noreferrer">官方主题库</a>
+下载,本文以 <a href="https://github.com/olOwOlo/hugo-theme-even"target="_blank" rel="noopener noreferrer">even</a>
+ 主题为例</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 进入新建好的3cho目录</span>
+<span class="nb">cd</span> /var/www/3cho
+<span class="c1"># 安装主题（不同主题安装方式不同）</span>
+git clone https://github.com/olOwOlo/hugo-theme-even themes/even
+<span class="c1">#复制主题自带的 config.toml文件到当前根目录</span>
+cp themes/even/exampleSite/config.toml ./config.toml
+</code></pre></div><h3 id="3创建一篇测试新文章">3.创建一篇测试新文章</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#生成一篇新文章</span>
+hugo new post/hello.md
+</code></pre></div><h3 id="4生成博客静态博客">4.生成博客静态博客</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 生成静态网页，包括草稿，生成好的内容在public目录中</span>
+hugo -D
+</code></pre></div><h3 id="5启动本地博客服务器">5.启动本地博客服务器</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo server
+</code></pre></div><p>点击访问你的博客<a href="http://localhost:1313">http://localhost:1313</a></p>
+<blockquote>
+<p>到这里，博客搭建工作已经完成了，接下来是把这个博客，部署到网络上，这样其他人才可以访问你的博客了。</p>
+</blockquote>
+<h3 id="6关闭本地博客服务器">6.关闭本地博客服务器</h3>
+<p>使用快捷键 <kbd>ctrl</kbd>+<kbd>c</kbd> 关闭本地博客服务器</p>
+<h2 id="六github使用">六、GitHub使用</h2>
+<h3 id="1创新一个新的github仓库">1.创新一个新的Github仓库</h3>
+<p>Create a new repository  repository在 GitHub<a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-new-repository"target="_blank" rel="noopener noreferrer">点击查看官方教程</a>
+，你不需要看文字，跟着图走就行。repository名字是什么很重要，下面我们要用它来替换3cho。</p>
+<h3 id="2初始化-github初始化意思是初次建立本地目录和-github远程仓库的连接">2.初始化 GitHub，初始化意思是初次建立本地目录和 GitHub远程仓库的连接</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#仓库名字repository以3cho为例</span>
+<span class="nb">echo</span> <span class="s2">&#34;# 3cho&#34;</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span class="s2">&#34;first commit&#34;</span>
+git remote add origin git@github.com:替换成你的 GitHub用户名/3cho.git
+git push -u origin master
+</code></pre></div><h2 id="七连接netlify前的准备">七、连接Netlify前的准备</h2>
+<h3 id="1删除主题下面的git文件主题以-even为例">1.删除主题下面的.git文件，主题以 even为例</h3>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">cd</span> /var/www/3cho/themes/even
+rm -rf .git
+</code></pre></div><h3 id="2创建-netlify-需要的配置文件">2.创建 Netlify 需要的配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">nano netlify.toml
+</code></pre></div><h3 id="3复制下面的文件粘贴进去hugo-version后面的数字替换成你安装的版本不明白什么意思可以不改">3.复制下面的文件粘贴进去，Hugo version后面的数字替换成，你安装的版本。不明白什么意思，可以不改。</h3>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+<span class="nx">publish</span> <span class="p">=</span> <span class="s2">&#34;public&#34;</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;hugo --gc --minify&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">production</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
+<span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.59.1&#34;</span>
+<span class="nx">HUGO_ENV</span> <span class="p">=</span> <span class="s2">&#34;production&#34;</span>
+<span class="nx">HUGO_ENABLEGITINFO</span> <span class="p">=</span> <span class="s2">&#34;true&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">split1</span><span class="p">]</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;hugo --gc --minify --enableGitInfo&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">split1</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
+<span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.59.1&#34;</span>
+<span class="nx">HUGO_ENV</span> <span class="p">=</span> <span class="s2">&#34;production&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">deploy</span><span class="err">-</span><span class="nx">preview</span><span class="p">]</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">deploy</span><span class="err">-</span><span class="nx">preview</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
+<span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.59.1&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">branch</span><span class="err">-</span><span class="nx">deploy</span><span class="p">]</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;hugo --gc --minify -b $DEPLOY_PRIME_URL&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">branch</span><span class="err">-</span><span class="nx">deploy</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
+<span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.59.1&#34;</span>
+
+<span class="p">[</span><span class="nx">context</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
+<span class="nx">HUGO_ENABLEGITINFO</span> <span class="p">=</span> <span class="s2">&#34;true&#34;</span>
+</code></pre></div><p>粘贴完成后，你需要同时按 <kbd>ctrl</kbd>+<kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按<kbd>回车</kbd>确认保存。</p>
+<h3 id="4创建-netlify-cms所需要的配置文件和目录">4.创建 Netlify CMS所需要的配置文件和目录</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">touch static/.keep data/.keep
+</code></pre></div><h3 id="5创建netlify-cms需要用的-admin-和-img文件夹">5.创建Netlify CMS需要用的 admin 和 img文件夹</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /var/www/3cho/static/admin
+mkdir /var/www/3cho/static/img
+</code></pre></div><h3 id="6创建netlify-cms页面">6.创建Netlify CMS页面</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /var/www/3cho/static/admin/index.html
+</code></pre></div><h3 id="7复制下面的文件粘贴进去">7.复制下面的文件粘贴进去</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Content Manager<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Include the script that enables Netlify Identity on this page. --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://identity.netlify.com/v1/netlify-identity-widget.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Include the script that builds the page and powers Netlify CMS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p>粘贴完成后，你需要同时按 <kbd>ctrl</kbd>+<kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按<kbd>回车</kbd>确认保存。</p>
+<h3 id="8创建netlify-cms配置文件">8.创建Netlify CMS配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /var/www/3cho/static/admin/config.yml
+</code></pre></div><h3 id="9复制下面的文件粘贴进去">9.复制下面的文件粘贴进去</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-gateway</span><span class="w">
+</span><span class="w">  </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span><span class="w"></span><span class="nt">media_folder</span><span class="p">:</span><span class="w"> </span><span class="l">static/img</span><span class="w">
+</span><span class="w"></span><span class="nt">public_folder</span><span class="p">:</span><span class="w"> </span><span class="l">/img</span><span class="w">
+</span><span class="w"></span><span class="nt">collections</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config</span><span class="w">
+</span><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Config</span><span class="w">
+</span><span class="w">    </span><span class="nt">files</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Config</span><span class="w">
+</span><span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l">config.toml</span><span class="w">
+</span><span class="w">        </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">title</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Title</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">baseURL</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Base URL</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Hostname (and path)  to the root</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">enableRobotsTXT</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Enable Robots Text</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">enableEmoji</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Enable Emoji</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">theme</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Theme name</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hasCJKLanguage</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Has CJK Language</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">paginate</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Paginate</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Number of articles displayed on the homepage</span><span class="w">
+</span><span class="w">            </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">rssLimit</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Rss Limint</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Limit Entry Count to Rss file</span><span class="w">
+</span><span class="w">            </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">disqusShortname</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Disqus Shortname</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">googleAnalytics</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Google Analytics code</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">copyright</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Copyright</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">defaultContentLanguage</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Default Content Language</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">languages</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Languages</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">en</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">English</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">languageCode</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Language code</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">author</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Author</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">name</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Name</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sitemap</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Sitemap</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">changefreq</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Change frequency</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">priority</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Priority</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">float</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">filename</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Filename</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Menu</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Main Menu</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">name</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Menu Name</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">weight</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Page order weight</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                    </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">identifier</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Identifier</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Menu Link</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">params</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Site Parameters</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">since</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Since</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Site Creation Time</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">homeFullContent</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Home Full Content</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;-</span><span class="sd">
+</span><span class="sd">                  if false, show post summaries on home page. Othewise show full
+</span><span class="sd">                  content.</span><span class="w">                  
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">rssFullContent</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Rss Full Content</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;if false, Rss feed instead of the summary&#39;</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">logoTitle</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Logo Title</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">keywords</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Keywords</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">String</span><span class="w">
+</span><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                  </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">description</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">description</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dateFormatToUse</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Date Format</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">toc</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">TOC</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">photoswipe</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Photo Swipe</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">contentCopyright</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Content Copyright</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">customCSS</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Custom Css</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;-</span><span class="sd">
+</span><span class="sd">                  if [&#39;custom.css&#39;], load &#39;/static/css/custom.css&#39; fileif
+</span><span class="sd">                  [&#39;custom.css&#39;], load &#39;/static/css/custom.css&#39; file</span><span class="w">                  
+</span><span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">String</span><span class="w">
+</span><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                  </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">customJS</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Custom JS</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;if [&#39;&#39;custom.js&#39;&#39;], load &#39;&#39;/static/js/custom.js&#39;&#39; file&#39;</span><span class="w">
+</span><span class="w">                </span><span class="nt">field</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">String</span><span class="w">
+</span><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                  </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">social</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Social</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">a-email</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Email</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">b-stack-overflow</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">StackOverflow</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">c-twitter</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Twitter</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">d-facebook</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Facebook</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">e-linkedin</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Linkedin</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">f-google</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Google</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">g-github</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Github</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">h-weibo</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Weibo</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">i-zhihu</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Zhihu</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">j-douban</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Douban</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">k-pocket</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Pocket</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">l-tumblr</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Tumblr</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">m-instagram</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Instagram</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="kc">n</span>-<span class="l">gitlab</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Gitlab</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">o-goodreads</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Goodreads</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">p-coding</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Coding</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">q-bilibili</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Bilibili</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">r-codeforces</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Codeforces</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">s-mastodon</span><span class="w">
+</span><span class="w">                    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Mastodon</span><span class="w">
+</span><span class="w">                    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">basicpage</span><span class="w">
+</span><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Basic pages</span><span class="w">
+</span><span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l">content/</span><span class="w">
+</span><span class="w">    </span><span class="nt">create</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span><span class="nt">extension</span><span class="p">:</span><span class="w"> </span><span class="l">md</span><span class="w">
+</span><span class="w">    </span><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{{slug}}&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">title</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Title</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">datetime</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">date</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Publish Date</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">datetime</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">lastmod</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Last Modified Date</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Menu</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">weight</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Page Order weight</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">comment</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Comment</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mathjax</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Mathjax</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;see https://www.mathjax.org/&#39;</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">markdown</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">body</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Content</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Page content</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">post</span><span class="w">
+</span><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Blog postss</span><span class="w">
+</span><span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l">content/post</span><span class="w">
+</span><span class="w">    </span><span class="nt">create</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span><span class="nt">extension</span><span class="p">:</span><span class="w"> </span><span class="l">md</span><span class="w">
+</span><span class="w">    </span><span class="nt">slug</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{{slug}}&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">title</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Blog Title</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">description</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Description</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">author</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Blog Author</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">datetime</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">date</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Publish date</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">datetime</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">lastmod</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Last Modified Date</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tags</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Tags</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">String</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">          </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">list</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">categories</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Categories</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">field</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">String</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">          </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">draft</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Draft</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">comment</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Comment</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">toc</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Toc</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">autoCollapseToc</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Auto Collaps Toc</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">contentCopyright</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Content Copyright</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">reward</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Reward</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mathjax</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Mathjax</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;see https://www.mathjax.org/&#39;</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">katex</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Katex</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;See https://github.com/KaTeX/KaTeX&#39;</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">markup</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Markup</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;See https://gohugo.io/content-management/formats/#mmark&#39;</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">weight</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Weight</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Menu</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span><span class="w">            </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Main</span><span class="w">
+</span><span class="w">            </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">            </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">parent</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Parent Menu</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">weight</span><span class="w">
+</span><span class="w">                </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Weight</span><span class="w">
+</span><span class="w">                </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">                </span><span class="nt">valueType</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l">markdown</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">body</span><span class="w">
+</span><span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">Content</span><span class="w">
+</span><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">        </span><span class="nt">hint</span><span class="p">:</span><span class="w"> </span><span class="l">Page content</span><span class="w">
+</span></code></pre></div><p>粘贴完成后，你需要同时按 <kbd>ctrl</kbd>+<kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按<kbd>回车</kbd>确认保存。</p>
+<h3 id="10上传到github">10.上传到GitHub</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#仓库名字repository以3cho为例</span>
+<span class="nb">echo</span> <span class="s2">&#34;# 3cho&#34;</span> &gt;&gt; README.md
+git init
+git add .
+git commit -m <span class="s2">&#34;install&#34;</span>
+git remote add origin git@github.com:替换成你的 GitHub用户名/3cho.git
+git push -u origin master
+</code></pre></div><h2 id="八netlify连接-github仓库">八、Netlify连接 GitHub仓库</h2>
+<h3 id="1使用github帐号登录netlifyhttpsappnetlifycom">1.使用Github帐号登录<a href="https://app.netlify.com/"target="_blank" rel="noopener noreferrer">Netlify</a>
+</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-30-16.18.png"
+        alt/></p>
+<h3 id="2创建新的站点">2.创建新的站点</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-07-20.png"
+        alt="Netlfiy 创建新站点"/></p>
+<h3 id="3连接-github">3.连接 Github</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-11-10.png"
+        alt/></p>
+<h3 id="4选择博客说在的github仓库">4.选择博客说在的GitHub仓库</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-25-01.png"
+        alt/></p>
+<h3 id="5部署">5.部署</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-26-39.png"
+        alt/></p>
+<blockquote>
+<p>等待完成，你的博客就已经成功创建了。Netlify 会提供一个二级域名。但是名字比较难记，你可以更改一个好记一些的。</p>
+</blockquote>
+<h3 id="6更改二级域名名字">6.更改二级域名名字</h3>
+<p><img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-35-38.png"
+        alt/>
+<img  src="https://img.ning.su/Screen-Shot-2019-11-11-16-36-01.png"
+        alt/>
+<img  src="https://img.yaleax.com/Screen-Shot-2019-11-11-16-38-37.png"
+        alt/></p>
+<blockquote>
+<p>大功告成</p>
+</blockquote>
+<h2 id="九netlify-cms">九、Netlify CMS</h2>
+<h3 id="1开启身份验证功能">1.开启身份验证功能</h3>
+<p><img  src="https://img.yaleax.com/pb-W8ymYipYXE.png"
+        alt/></p>
+<h3 id="2开启-git-gateway">2.开启 Git Gateway</h3>
+<p><img  src="https://img.yaleax.com/pb-SXUAftKp1b.png"
+        alt/></p>
+<h3 id="3开启邮箱免验证功能">3.开启邮箱免验证功能</h3>
+<p><img  src="https://img.yaleax.com/pb-XAnpBjmygb.png"
+        alt/></p>
+<h3 id="4邀请自己成为管理员">4.邀请自己成为管理员</h3>
+<p><img  src="https://img.yaleax.com/pb-BPUoTrJr83.png"
+        alt/></p>
+<h3 id="5填写自己的邮箱">5.填写自己的邮箱</h3>
+<h3 id="6去邮箱接收邀请邮箱">6.去邮箱接收邀请邮箱</h3>
+<h3 id="7访问netlify-cms后台">7.访问Netlify CMS后台</h3>
+<p>后台地址是，你的网站后面加 admin，以 <a href="https://suan.su">https://suan.su</a> 为例，后台管理登录地址应该是:<a href="https://suan.su/admin">https://suan.su/admin</a></p>
+<h2 id="后话">后话</h2>
+<p>当我逐渐熟悉了Github和找到了喜爱的本地Markdown编辑器 <a href="https://www.typora.io/"target="_blank" rel="noopener noreferrer">Typora</a>
+后，我已经不太想使用netlify cms了，但是 netlify cms对初学者还是很友好的。</p>
+</article><section class="article labels"><a class="tag" href=/tags/hugo/>hugo</a><a class="tag" href=/tags/%E5%8D%9A%E5%AE%A2/>博客</a></section><section class="article license">版权声明：如果转发请带上本文链接和注明来源。</section><section class="article author"><img class="avatar" src="/img/avatar.jpg" alt><p class="name">愚道</p><div class="bio">求知若渴，虚心若愚</div><div class="details"><a class="item" href="https://github.com/YALEAX" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-github"></span>&nbsp;YALEAX</a><a class="item" href="mailto:Qu@JzE.us" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-email"></span>&nbsp;Qu@JzE.us</a></div>
+</section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/%E4%BD%BF%E7%94%A8stackbit-%E6%9D%A5%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"><span class="iconfont icon-article"></span>使用Stackbit 来快速搭建静态博客</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 蜀山小筑.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a></p></div>
+</section><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script></body>
+
+</html>

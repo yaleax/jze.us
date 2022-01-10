@@ -11,10 +11,10 @@ draft: true
 
 ### 1.示例代码
 
-下面这个是安装 Debian10,密码是: `MoeClub.org`
+下面这个是安装 Debian11,密码是: `MoeClub.org`
 
 ```bash
-bash <(wget --no-check-certificate -qO- 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh') -d 10 -v 64 -a
+bash <(wget --no-check-certificate -qO- 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh') -d 11 -v 64 -a
 ```
 参照下面的提示,可以安装其他系统和版本
 
@@ -74,14 +74,16 @@ bash InstallNET.sh -d 9 -v amd64 -a \
 --ip-mask 255.255.255.0 \
 --ip-gate 10.10.10.1
 ```
-{{% notice info 备注 %}}  
+```
 第1行：下载萌咖大佬的脚本
 第2行：改dns为1.1.1.1
 第3行：想安装 debian几，就把数字9改成几。
 第4行：改root预设密码为admin
 第5行：改镜像源
 第6-8行：填写2查看的原 IP 地址  
-{{% /notice %}}
+```
+
+
 
 ---------------------------
 [参考1]：[https://github.com/jacyl4/de_GWD](https://github.com/jacyl4/de_GWD/wiki/%E9%87%8D%E8%A3%85vps-debian-%E9%80%9A%E8%BF%87dd-%E5%91%BD%E4%BB%A4%E8%A1%8C-%E6%96%B9%E5%BC%8F-%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95)

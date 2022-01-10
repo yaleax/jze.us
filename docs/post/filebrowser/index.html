@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh"><meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Filebrowser&nbsp;&ndash;&nbsp;蜀山小筑</title><link rel="stylesheet" href="/css/core.min.2b84579068bd8ec3d1cd26c1d4177c5a85fee2eba66d7cd5aa289e9b7aef0a612b119e4bc14d850c83d270f4b192374c.css" integrity="sha384-K4RXkGi9jsPRzSbB1Bd8WoX&#43;4uumbXzVqiiem3rvCmErEZ5LwU2FDIPScPSxkjdM"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Filebrowser" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name">蜀山小筑</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">主页</a><a class="nav item" href="/tags">标签</a><a class="nav item" href="/categories">分类</a><a class="nav item" href="/about">关于我</a></nav></div></span></div><div class="site slogan"><span class="title">「少即多,慢则快」</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Filebrowser</h1><p class="article date">Wednesday, December 4, 2019</p></section><article class="article markdown-body"><h3 id="简介">简介</h3>
+<p>File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。它除了可以让你进行文件管理之外，还有一些其他的功能。它支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限。它还支持文件分享，就行网盘那样，你可以通过它来向你的朋友分享文件。你还可以用它来执行一些 Linux 命令，比如你想要在当前目录下克隆一个代码库，就可以用它来执行git等命令。</p>
+<h3 id="1安装-filebrowser">1.安装 Filebrowser</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -fsSL https://filebrowser.xyz/get.sh <span class="p">|</span> bash
+</code></pre></div><p>安装目录：<code>/usr/local/bin/filebrowser</code></p>
+<h3 id="2创建-filebrowser配置文件">2.创建 Filebrowser配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /etc/filebrowser
+mkdir /etc/filebrowser/filebrowser
+nano /etc/filebrowser/filebrowser.json
+</code></pre></div><h3 id="3配置文件">3.配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{</span>
+  <span class="s2">&#34;port&#34;</span>: 18888,
+  <span class="s2">&#34;baseURL&#34;</span>: <span class="s2">&#34;/admin&#34;</span>, //后缀名字例如：www.yale.ga/admin
+  <span class="s2">&#34;address&#34;</span>: <span class="s2">&#34;0.0.0.0&#34;</span>,
+  <span class="s2">&#34;log&#34;</span>: <span class="s2">&#34;stdout&#34;</span>,
+  <span class="s2">&#34;database&#34;</span>: <span class="s2">&#34;/var/www/yale/database.db&#34;</span>, //数据存放地址
+  <span class="s2">&#34;root&#34;</span>: <span class="s2">&#34;/var/www/yale&#34;</span>  //你想管理的目录
+<span class="o">}</span>
+</code></pre></div><h3 id="4设置系统服务">4.设置系统服务</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/systemd/system/filebrowser.service
+</code></pre></div><h3 id="5系统服务配置文件">5.系统服务配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>File Browser
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/filebrowser -c /etc/filebrowser/filebrowser.json
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+
+</code></pre></div><h3 id="6重新载入-system">6.重新载入 system</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload
+</code></pre></div><h3 id="7服务管理">7.服务管理</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">状态：systemctl status filebrowser
+启动：systemctl start filebrowser
+停止：systemctl stop filebrowser
+重启：systemctl restart filebrowser
+</code></pre></div><h3 id="8登录地址">8.登录地址</h3>
+<p>http://你的ip:1888/admin<br>
+帐号:<code>admin</code><br>
+密码:<code>admin</code></p>
+<h3 id="9启动-https">9.启动 https</h3>
+<p>启动 https后面会介绍，利用 Caddy 反代,添加一句，后面 Caddy 配置文件我会加进去。<br>
+<code>proxy /admin 127.0.0.1:18888</code></p>
+<h3 id="10通过-caddy-建立-ssl">10.通过 caddy 建立 ssl</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">www.yale.ga
+<span class="o">{</span>
+  gzip
+  tls 123456212@mail.com
+  log /var/log/caddy/access.log
+  root /var/www/yale/public
+  proxy /admin 127.0.0.1:18888 <span class="se">\\</span>反代 filebreowser
+
+<span class="o">}</span>
+</code></pre></div><hr>
+<p>[参考1]<a href="https://ljc.space/post/website-caddy-hugo-filebrowser/">https://ljc.space/post/website-caddy-hugo-filebrowser/</a><br>
+[参考2]<a href="https://233blog.com/post/26/">https://233blog.com/post/26/</a><br>
+[参考3]<a href="https://www.mivm.cn/filebrowser/">https://www.mivm.cn/filebrowser/</a></p>
+</article><section class="article license">版权声明：如果转发请带上本文链接和注明来源。</section><section class="article author"><img class="avatar" src="/img/avatar.jpg" alt><p class="name">愚道</p><div class="bio">求知若渴，虚心若愚</div><div class="details"><a class="item" href="https://github.com/YALEAX" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-github"></span>&nbsp;YALEAX</a><a class="item" href="mailto:Qu@JzE.us" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-email"></span>&nbsp;Qu@JzE.us</a></div>
+</section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/doh/"><span class="iconfont icon-article"></span>DOH（DNS-over-HTTPs）服务器搭建</a></p><p><a class="link" href="/post/%E9%80%9A%E8%BF%87%E5%9B%BD%E5%86%85-nat-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%BD%AC%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%8A%A0%E9%80%9F%E7%9A%84%E7%9B%AE%E7%9A%84/"><span class="iconfont icon-article"></span>通过iptables实现国内 nat的IP端口数据包转发服务</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 蜀山小筑.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a></p></div>
+</section><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script></body>
+
+</html>

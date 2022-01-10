@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh"><meta charset="utf-8"><meta name="generator" content="Hugo 0.83.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>通过dd 命令给 VPS重装debian系统&nbsp;&ndash;&nbsp;蜀山小筑</title><link rel="stylesheet" href="/css/core.min.2b84579068bd8ec3d1cd26c1d4177c5a85fee2eba66d7cd5aa289e9b7aef0a612b119e4bc14d850c83d270f4b192374c.css" integrity="sha384-K4RXkGi9jsPRzSbB1Bd8WoX&#43;4uumbXzVqiiem3rvCmErEZ5LwU2FDIPScPSxkjdM"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="通过dd 命令给 VPS重装debian系统" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name">蜀山小筑</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">主页</a><a class="nav item" href="/tags">标签</a><a class="nav item" href="/categories">分类</a><a class="nav item" href="/about">关于我</a></nav></div></span></div><div class="site slogan"><span class="title">「少即多,慢则快」</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">通过dd 命令给 VPS重装debian系统</h1><p class="article date">Monday, February 24, 2020</p></section><article class="article markdown-body"><h2 id="前言">前言</h2>
+<p>当你想在 vps 里面重新安装一个干净的系统的时候，你就可以用下面的方法来执行。注意看说明，这个不是一键脚本，需要修改参数。</p>
+<h2 id="一键傻瓜式安装">一键傻瓜式安装</h2>
+<h3 id="1示例代码">1.示例代码</h3>
+<p>下面这个是安装 Debian11,密码是: <code>MoeClub.org</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash &lt;<span class="o">(</span>wget --no-check-certificate -qO- <span class="s1">&#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&#39;</span><span class="o">)</span> -d <span class="m">11</span> -v <span class="m">64</span> -a
+</code></pre></div><p>参照下面的提示,可以安装其他系统和版本</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Usage:
+        bash InstallNET.sh      -d/--debian <span class="o">[</span>dist-name<span class="o">]</span>
+                                -u/--ubuntu <span class="o">[</span>dist-name<span class="o">]</span>
+                                -c/--centos <span class="o">[</span>dist-version<span class="o">]</span>
+                                -v/--ver <span class="o">[</span>32/i386<span class="p">|</span>64/amd64<span class="o">]</span>
+                                --ip-addr/--ip-gate/--ip-mask
+                                -apt/-yum/--mirror
+                                -dd/--image
+                                -a/-m
+
+<span class="c1"># dist-name: 发行版本代号</span>
+<span class="c1"># dist-version: 发行版本号</span>
+<span class="c1"># -apt/-yum/--mirror : 使用定义镜像</span>
+<span class="c1"># -a/-m : 询问是否能进入VNC自行操作. -a 为不提示(一般用于全自动安装), -m 为提示.</span>
+</code></pre></div><h3 id="11-整合代码包含windows">1.1 整合代码包含windows，</h3>
+<p>Linux默认密码：<code>MoeClub.org</code>  or  <code>cxthhhhh.com</code></p>
+<pre><code>
+##镜像文件在OneDrive
+wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/dd/master/dd-od.sh &amp;&amp; chmod +x dd-od.sh &amp;&amp; ./dd-od.sh
+
+##镜像文件在GoogleDrive
+wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/dd/master/dd-gd.sh &amp;&amp; chmod +x dd-gd.sh &amp;&amp; ./dd-gd.sh
+</code></pre><h2 id="自定义-ip-安装">自定义 IP 安装</h2>
+<h3 id="1装依赖组件">1.装依赖组件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt-get install -y xz-utils openssl gawk file
+</code></pre></div><h3 id="2查看机子原来ip">2.查看机子原来ip</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/network/interfaces
+</code></pre></div><h3 id="3修改好ip整段丢进终端运行">3.修改好ip整段丢进终端运行</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget --no-check-certificate -c http://moeclub.org/attachment/LinuxShell/InstallNET.sh
+sed -i <span class="s1">&#39;s/8.8.8.8/1.1.1.1/g&#39;</span> InstallNET.sh
+bash InstallNET.sh -d <span class="m">9</span> -v amd64 -a <span class="se">\
+</span><span class="se"></span>-p admin <span class="se">\
+</span><span class="se"></span>--mirror <span class="s2">&#34;http://deb.debian.org/debian/debian&#34;</span> <span class="se">\
+</span><span class="se"></span>--ip-addr 10.10.10.10 <span class="se">\
+</span><span class="se"></span>--ip-mask 255.255.255.0 <span class="se">\
+</span><span class="se"></span>--ip-gate 10.10.10.1
+</code></pre></div><pre><code>第1行：下载萌咖大佬的脚本
+第2行：改dns为1.1.1.1
+第3行：想安装 debian几，就把数字9改成几。
+第4行：改root预设密码为admin
+第5行：改镜像源
+第6-8行：填写2查看的原 IP 地址  
+</code></pre><hr>
+<p>[参考1]：<a href="https://github.com/jacyl4/de_GWD/wiki/%E9%87%8D%E8%A3%85vps-debian-%E9%80%9A%E8%BF%87dd-%E5%91%BD%E4%BB%A4%E8%A1%8C-%E6%96%B9%E5%BC%8F-%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95"target="_blank" rel="noopener noreferrer">https://github.com/jacyl4/de_GWD</a>
+
+[参考2]：<a href="https://moeclub.org/2018/04/03/603/"target="_blank" rel="noopener noreferrer">https://moeclub.org/2018/04/03/603/</a>
+</p>
+</article><section class="article license">版权声明：如果转发请带上本文链接和注明来源。</section><section class="article author"><img class="avatar" src="/img/avatar.jpg" alt><p class="name">愚道</p><div class="bio">求知若渴，虚心若愚</div><div class="details"><a class="item" href="https://github.com/YALEAX" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-github"></span>&nbsp;YALEAX</a><a class="item" href="mailto:Qu@JzE.us" target="_blank" rel="noopener noreferrer"><span class="iconfont icon-email"></span>&nbsp;Qu@JzE.us</a></div>
+</section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/k2ppadavan/"><span class="iconfont icon-article"></span>K2P老毛子padavan固件 设置开启ipv6</a></p><p><a class="link" href="/post/doh/"><span class="iconfont icon-article"></span>DOH（DNS-over-HTTPs）服务器搭建</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 蜀山小筑.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a></p></div>
+</section><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script></body>
+
+</html>

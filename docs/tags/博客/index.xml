@@ -1,0 +1,524 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on 蜀山小筑</title>
+    <link>https://jze.us/tags/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on 蜀山小筑</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>©2021 蜀山小筑.</copyright>
+    <lastBuildDate>Sat, 09 Nov 2019 06:46:37 +0000</lastBuildDate>
+    
+        <atom:link href="https://jze.us/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于我</title>
+      <link>https://jze.us/about/</link>
+      <pubDate>Sun, 10 Nov 2019 11:49:51 +0000</pubDate>
+      
+      <guid>https://jze.us/about/</guid>
+      <description>&lt;p&gt;为本博客提供技术支持的平台：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客生成平台：&lt;a href=&#34;https://gohugo.io/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Hugo&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;博客主题：&lt;a href=&#34;https://themes.gohugo.io/hugo-notepadium/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Notepadium&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;博客代码托管：&lt;a href=&#34;https://github.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;GitHub&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;网站服务器供应商：&lt;a href=&#34;https://pages.cloudflare.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Cloudflare Pages&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;域名服务商：&lt;a href=&#34;https://www.dynadot.com/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Dynadot&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;DNS服务商：&lt;a href=&#34;https://www.cloudflare.com/dns/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;CloudFlare&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;域名证书：&lt;a href=&#34;https://letsencrypt.org/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;CDN网络加速：&lt;a href=&#34;https://www.cloudflare.com/cdn/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;CloudFlare&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>给vps套上warp来解锁奈飞</title>
+      <link>https://jze.us/post/vpswarpnetflix/</link>
+      <pubDate>Tue, 06 Apr 2021 11:36:27 +0800</pubDate>
+      
+      <guid>https://jze.us/post/vpswarpnetflix/</guid>
+      <description>&lt;p&gt;本教程只是用于能够修改内核的KVM产品，或者内核高于5.6的无法修改内核的产品。unamer -r 可以查看自己的内核。下面所有命令只在Debian/Ubuntu环境下工作。&lt;/p&gt;
+&lt;h2 id=&#34;一升级内核&#34;&gt;一、升级内核&lt;/h2&gt;
+&lt;h3 id=&#34;11选择2升级内核56以上的内核自带wireguard&#34;&gt;1.1选择2升级内核，5.6以上的内核自带wireguard&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;wget --no-check-certificate -qO- https://raw.githubusercontent.com/jacyl4/de_GWD/main/server&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;二wireguard&#34;&gt;二、Wireguard&lt;/h2&gt;
+&lt;h3 id=&#34;21-安装wireguard&#34;&gt;2.1 安装Wireguard&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt install wireguard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;三warp&#34;&gt;三、Warp&lt;/h2&gt;
+&lt;h3 id=&#34;31安装wgcf-warp&#34;&gt;3.1安装Wgcf (warp)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -fsSL git.io/wgcf.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;32-自动生成warp账号&#34;&gt;3.2 自动生成warp账号&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wgcf register
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;33-自动生成wireguard配置&#34;&gt;3.3 自动生成Wireguard配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wgcf generate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;34-修改wireguard配置&#34;&gt;3.4 修改Wireguard配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano wgcf-profile.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;35-配置内容给ipv4增加ipv6地址&#34;&gt;3.5 配置内容(给ipv4增加IPv6地址)&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;[Interface]
+PrivateKey = mIGbBq8ZLrsgnDM0fwjfd7Qu4cIbjf7ZhvnX3KE8N2o=
+Address = 172.16.0.2/32
+Address = fd01:5ca1:ab1e:881c:570:1058:47ee:23f1/128
+DNS = 9.9.9.10,8.8.8.8,1.1.1.1
+MTU = 1280
+[Peer]
+PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+AllowedIPs = ::/0
+Endpoint = 162.159.192.1:2408
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;36-移动配置到wireguard目录&#34;&gt;3.6 移动配置到Wireguard目录&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;37-启动wireguard&#34;&gt;3.7 启动Wireguard&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo wg-quick up wgcf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;38-测试ipv6-是否生效&#34;&gt;3.8 测试ipv6 是否生效&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# IPv4 Only VPS&lt;/span&gt;
+curl -6 ip.p3terx.com
+&lt;span class=&#34;c1&#34;&gt;# IPv6 Only VPS&lt;/span&gt;
+curl -4 ip.p3terx.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;39-关闭wirguard&#34;&gt;3.9 关闭Wirguard&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo wg-quick down wgcf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;310-启动开机自动启动&#34;&gt;3.10 启动开机自动启动&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启用守护进程&lt;/span&gt;
+sudo systemctl start wg-quick@wgcf
+&lt;span class=&#34;c1&#34;&gt;# 设置开机启动&lt;/span&gt;
+sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; wg-quick@wgcf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四代理设置&#34;&gt;四、代理设置&lt;/h2&gt;
+&lt;h3 id=&#34;41-ipv6-优先&#34;&gt;4.1 IPv6 优先&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;grep -qE &lt;span class=&#34;s1&#34;&gt;&amp;#39;^[ ]*label[ ]*2002::/16[ ]*2&amp;#39;&lt;/span&gt; /etc/gai.conf &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;label 2002::/16   2&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo tee -a /etc/gai.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;42-通过代理设置ipv6优先&#34;&gt;4.2 通过代理设置IPv6优先&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;outbounds&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;sendThrough&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;::&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;freedom&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;nt&#34;&gt;&amp;#34;domainStrategy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;UseIP&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;五一些常用命令&#34;&gt;五、一些常用命令&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /opt/de_GWD/vtrui/config.json
+systemctl restart vtrui
+nano /etc/wireguard/wgcf.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;六引用&#34;&gt;六、引用&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://hiram.wang/cloudflare-wrap-vps/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;在VPS上部署WARP来进行流量加密并解锁Netflix和Google验证码（无损实现IPv4/IPv6双栈） | Hiram Home&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://p3terx.com/archives/use-cloudflare-warp-to-add-extra-ipv4-or-ipv6-network-support-to-vps-servers-for-free.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;使用 Cloudflare WARP 给 VPS 服务器免费添加 IPv4 或 IPv6 网络支持 - P3TERX ZONE&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://p3terx.com/archives/debian-linux-vps-server-wireguard-installation-tutorial.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Debian Linux VPS 服务器 WireGuard 安装教程 - P3TERX ZONE&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://loukky.com/archives/1507&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;关于v2ray在搭建了cloudflare warp的机器上无法按照系统路由流量的解决方法 – LOUKKY的博客&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title> 让目录重新连接 Github</title>
+      <link>https://jze.us/post/reconnecthuggit/</link>
+      <pubDate>Tue, 28 Jul 2020 00:07:38 +0800</pubDate>
+      
+      <guid>https://jze.us/post/reconnecthuggit/</guid>
+      <description>&lt;h3 id=&#34;1前言&#34;&gt;1.前言&lt;/h3&gt;
+&lt;p&gt;有两台电脑，一台在家，另外一台在公司，通过 Dropbox 可以让两个目录文件一致。如果想上传修改到 Github 还需要重新连接一下。这个教程的前提是，你已经复制了id_rsa.pub文件到正确的位置。&lt;/p&gt;
+&lt;h3 id=&#34;2获得当前目录github-地址&#34;&gt;2.获得当前目录Github 地址&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config -l &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep url
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你将获得类似下面这样的地址，复制后面的: &lt;code&gt;yaleax/jze.us.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;remote.origin.url=https://github.com/yaleax/jze.us.git&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3重新连接目录到-github&#34;&gt;3.重新连接目录到 Github&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote set-url origin git@github.com:yaleax/jze.us.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;完成，祝你好运。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Zeit反代 v2ray 加速</title>
+      <link>https://jze.us/post/zeit/</link>
+      <pubDate>Sun, 22 Mar 2020 23:08:34 +0800</pubDate>
+      
+      <guid>https://jze.us/post/zeit/</guid>
+      <description>&lt;h3 id=&#34;1注册-zeit帐号&#34;&gt;1.注册 zeit帐号&lt;/h3&gt;
+&lt;p&gt;可以&lt;a href=&#34;https://zeit.co/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://zeit.co/&lt;/a&gt;
+官网直接使用 github帐号登录&lt;/p&gt;
+&lt;h3 id=&#34;2-在电脑上登录-zeit&#34;&gt;2. 在电脑上登录 zeit&lt;/h3&gt;
+&lt;p&gt;安装Now CLI命令行工具并登录，需要nodejs运行环境 参考官方文档 &lt;a href=&#34;https://zeit.co/docs&#34;&gt;https://zeit.co/docs&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;npm i -g now
+now login
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3在电脑上新建一个文件夹&#34;&gt;3.在电脑上新建一个文件夹&lt;/h3&gt;
+&lt;p&gt;可以把 proxy 改成自己想要的名字&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir proxy
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; proxy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4编辑nowjson文件写入以下内容相关内容改成你自己的&#34;&gt;4.编辑now.json文件，写入以下内容，相关内容改成你自己的&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano now.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;你的应用名字&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;routes&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;src&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/$1(.*)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;dest&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://这里中文替换成上面的域名/$1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;5上传&#34;&gt;5.上传&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;now --prod
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;[参考]：&lt;a href=&#34;https://mjjj.run/archives/44.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://mjjj.run/archives/44.html&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dns64服务器</title>
+      <link>https://jze.us/post/dns64/</link>
+      <pubDate>Sat, 21 Mar 2020 20:36:25 +0800</pubDate>
+      
+      <guid>https://jze.us/post/dns64/</guid>
+      <description>&lt;h3 id=&#34;dns64-server是什么&#34;&gt;Dns64 server是什么&lt;/h3&gt;
+&lt;p&gt;你有一台 ipv6的机器，想访问 ipv4的网站，Dns64 server就可以帮助你解决这个问题。路由图大概是这个样子&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://img.yaleax.com/u-1641462757-2111149660-fm-26-gp-0.jpg&#34;
+        alt/&gt;&lt;/p&gt;
+&lt;p&gt;1.修改 dns服务器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /etc/resolv.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2.删除以前的nameserver ,使用下面任意两个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#trex DNS64
+nameserver 2001:67c:2b0::4 
+nameserver 2001:67c:2b0::6
+# Cloudfare NDS64
+nameserver 2606:4700:4700::64
+nameserver 2606:4700:4700::6400
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;p&gt;3.保存&lt;/p&gt;
+&lt;p&gt;粘贴完成后，你需要同时按 &lt;code&gt;ctrl&lt;/code&gt;+&lt;code&gt;x&lt;/code&gt;来退出,再输入&lt;code&gt;y&lt;/code&gt;确认保存，再按&lt;code&gt;Enter&lt;/code&gt;确认保存。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;[参考1] ：&lt;a href=&#34;https://wangdalao.com/2913.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://wangdalao.com/2913.html&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;[参考2]：&lt;a href=&#34;http://www.trex.fi/2011/dns64.html&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;http://www.trex.fi/2011/dns64.html&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;[参考2]：&lt;a href=&#34;https://community.cloudflare.com/t/dns64-support/18702&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://community.cloudflare.com/t/dns64-support/18702&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>K2P老毛子padavan固件 设置开启ipv6</title>
+      <link>https://jze.us/post/k2ppadavan/</link>
+      <pubDate>Sat, 21 Mar 2020 19:57:27 +0800</pubDate>
+      
+      <guid>https://jze.us/post/k2ppadavan/</guid>
+      <description>&lt;p&gt;前提是你的电信运营商已经支持ipv6服务。&lt;/p&gt;
+&lt;p&gt;具体配置看下图&lt;/p&gt;
+&lt;p&gt;&lt;img  src=&#34;https://img.yaleax.com/Screen-Shot-2020-03-21-19-48-17.png&#34;
+        alt/&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>通过dd 命令给 VPS重装debian系统</title>
+      <link>https://jze.us/post/dddebian/</link>
+      <pubDate>Mon, 24 Feb 2020 21:30:45 -0500</pubDate>
+      
+      <guid>https://jze.us/post/dddebian/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;当你想在 vps 里面重新安装一个干净的系统的时候，你就可以用下面的方法来执行。注意看说明，这个不是一键脚本，需要修改参数。&lt;/p&gt;
+&lt;h2 id=&#34;一键傻瓜式安装&#34;&gt;一键傻瓜式安装&lt;/h2&gt;
+&lt;h3 id=&#34;1示例代码&#34;&gt;1.示例代码&lt;/h3&gt;
+&lt;p&gt;下面这个是安装 Debian11,密码是: &lt;code&gt;MoeClub.org&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;wget --no-check-certificate -qO- &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;11&lt;/span&gt; -v &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; -a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参照下面的提示,可以安装其他系统和版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Usage:
+        bash InstallNET.sh      -d/--debian &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dist-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+                                -u/--ubuntu &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dist-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+                                -c/--centos &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dist-version&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+                                -v/--ver &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;32/i386&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;64/amd64&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+                                --ip-addr/--ip-gate/--ip-mask
+                                -apt/-yum/--mirror
+                                -dd/--image
+                                -a/-m
+
+&lt;span class=&#34;c1&#34;&gt;# dist-name: 发行版本代号&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# dist-version: 发行版本号&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -apt/-yum/--mirror : 使用定义镜像&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# -a/-m : 询问是否能进入VNC自行操作. -a 为不提示(一般用于全自动安装), -m 为提示.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;11-整合代码包含windows&#34;&gt;1.1 整合代码包含windows，&lt;/h3&gt;
+&lt;p&gt;Linux默认密码：&lt;code&gt;MoeClub.org&lt;/code&gt;  or  &lt;code&gt;cxthhhhh.com&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+##镜像文件在OneDrive
+wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/dd/master/dd-od.sh &amp;amp;&amp;amp; chmod +x dd-od.sh &amp;amp;&amp;amp; ./dd-od.sh
+
+##镜像文件在GoogleDrive
+wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/dd/master/dd-gd.sh &amp;amp;&amp;amp; chmod +x dd-gd.sh &amp;amp;&amp;amp; ./dd-gd.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;自定义-ip-安装&#34;&gt;自定义 IP 安装&lt;/h2&gt;
+&lt;h3 id=&#34;1装依赖组件&#34;&gt;1.装依赖组件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt-get install -y xz-utils openssl gawk file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2查看机子原来ip&#34;&gt;2.查看机子原来ip&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /etc/network/interfaces
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3修改好ip整段丢进终端运行&#34;&gt;3.修改好ip整段丢进终端运行&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget --no-check-certificate -c http://moeclub.org/attachment/LinuxShell/InstallNET.sh
+sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/8.8.8.8/1.1.1.1/g&amp;#39;&lt;/span&gt; InstallNET.sh
+bash InstallNET.sh -d &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; -v amd64 -a &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;-p admin &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--mirror &lt;span class=&#34;s2&#34;&gt;&amp;#34;http://deb.debian.org/debian/debian&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--ip-addr 10.10.10.10 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--ip-mask 255.255.255.0 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--ip-gate 10.10.10.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;第1行：下载萌咖大佬的脚本
+第2行：改dns为1.1.1.1
+第3行：想安装 debian几，就把数字9改成几。
+第4行：改root预设密码为admin
+第5行：改镜像源
+第6-8行：填写2查看的原 IP 地址  
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;p&gt;[参考1]：&lt;a href=&#34;https://github.com/jacyl4/de_GWD/wiki/%E9%87%8D%E8%A3%85vps-debian-%E9%80%9A%E8%BF%87dd-%E5%91%BD%E4%BB%A4%E8%A1%8C-%E6%96%B9%E5%BC%8F-%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://github.com/jacyl4/de_GWD&lt;/a&gt;
+
+[参考2]：&lt;a href=&#34;https://moeclub.org/2018/04/03/603/&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;https://moeclub.org/2018/04/03/603/&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DOH（DNS-over-HTTPs）服务器搭建</title>
+      <link>https://jze.us/post/doh/</link>
+      <pubDate>Sat, 22 Feb 2020 21:23:29 -0500</pubDate>
+      
+      <guid>https://jze.us/post/doh/</guid>
+      <description>&lt;h2 id=&#34;一doh介绍&#34;&gt;一、Doh介绍&lt;/h2&gt;
+&lt;p&gt;DOH全称为DNS-over-HTTPs，顾名思义，其主要目的是使用https协议来进行DNS请求。
+正常的DNS请求过程是通过计算机上的DNS客户端程序来帮助用户发起DNS请求，而不是通过浏览器本身发送，DNS使用的协议是UDP协议，UDP协议不具备很好的安全性，这样发起的DNS请求会遭到DNS劫持，攻击者会将用户想要访问的域名解析到别的IP地址上，因此DOH为了解决这个问题而出现。
+DOH是使用HTTPs协议发送dns请求，请求到达DOH服务器后，由DOH服务器解码HTTPS并发送DNS请求，DNS请求结果返回到DOH服务器上后，再由将其打包成HTTPS返回给客户端，这就保证了客户端发起的dns请求不会被攻击者拿到。&lt;/p&gt;
+&lt;h2 id=&#34;二ubuntu和-debian-系统&#34;&gt;二、Ubuntu和 debian 系统&lt;/h2&gt;
+&lt;h3 id=&#34;1更新系统&#34;&gt;1.更新系统&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt update
+apt -y upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;三pihole&#34;&gt;三、Pihole&lt;/h2&gt;
+&lt;h3 id=&#34;1安装-pihole&#34;&gt;1.安装 pihole&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -sSL https://install.pi-hole.net &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2修改-pihole-配置文件&#34;&gt;2.修改 pihole 配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;rm /etc/dnsmasq.d/01-pihole.conf
+nano /etc/dnsmasq.d/01-pihole.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3pihole的配置文件&#34;&gt;3.Pihole的配置文件&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;addn-hosts=/etc/pihole/gravity.list
+addn-hosts=/etc/pihole/black.list
+addn-hosts=/etc/pihole/local.list
+
+
+localise-queries
+
+
+no-resolv
+
+#log-queries
+log-facility=/var/log/pihole.log
+
+local-ttl=2
+
+log-async
+domain-needed
+bogus-priv
+server=1.1.1.1
+server=8.8.8.8
+server=1.0.0.1
+server=8.8.4.4
+interface=ens3
+
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;4重新启动-pihole-并查看状态&#34;&gt;4.重新启动 pihole 并查看状态&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;pihole restartdns
+pihole status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四lighttpd&#34;&gt;四、Lighttpd&lt;/h2&gt;
+&lt;h3 id=&#34;1修改lighttpd配置文件&#34;&gt;1.修改lighttpd配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /etc/lighttpd/lighttpd.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2修改serverport值&#34;&gt;2.修改server.port值&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;    vim /etc/lighttpd/lighttpd.conf
+    #找到以下字段，修改server.port值
+    ...
+    server.groupname = &amp;quot;www-data&amp;quot;
+    server.port = 9090
+    accesslog.filename = &amp;quot;/var/log/lighttpd/access.log&amp;quot;
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;3重启-lighttpd&#34;&gt;3.重启 lighttpd&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl restart lighttpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4更改管理员密码&#34;&gt;4.更改管理员密码&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;pihole -a -p
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;访问 http://youip:9090/admin&lt;/p&gt;
+&lt;h2 id=&#34;五dns-over-https&#34;&gt;五、DNS-over-HTTPs&lt;/h2&gt;
+&lt;h3 id=&#34;1安装dns-over-https服务器&#34;&gt;1.安装DNS-over-HTTPs服务器&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget https://github.com/yaleax/yaleax/releases/download/doh-server/doh-server_2.0.1_amd64.deb
+sudo dpkg -i doh-server_2.0.1_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2修改dns-over-https配置&#34;&gt;2.修改DNS-over-HTTPs配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;rm nano /etc/dns-over-https/doh-server.conf
+nano /etc/dns-over-https/doh-server.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3dns-over-https的配置文件&#34;&gt;3.DNS-over-HTTPs的配置文件&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;listen = [ &amp;quot;127.0.0.1:8053&amp;quot;, ]
+
+path = &amp;quot;/&amp;quot;
+
+upstream = [ &amp;quot;127.0.0.1:53&amp;quot;, ]
+
+timeout = 10
+tries = 3
+verbose = false
+log_guessed_client_ip = false
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;4重新启动dns-over-https并重看状态&#34;&gt;4.重新启动DNS-over-HTTPs并重看状态&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl restart doh-server
+systemctl status doh-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;六caddy&#34;&gt;六、Caddy&lt;/h2&gt;
+&lt;p&gt;默认你已经安装了 Caddy,如果没有安装，可以参考本博客关于 Caddy 的文章。&lt;/p&gt;
+&lt;h3 id=&#34;1修改-caddy-的caddyfile-文件&#34;&gt;1.修改 Caddy 的Caddyfile 文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /usr/local/caddy/Caddyfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2caddyfile配置文件&#34;&gt;2.Caddyfile配置文件&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;proxy / http://127.0.0.1:8053 {
+   header_upstream Host {host}
+   header_upstream X-Real-IP {remote}
+   header_upstream X-Forwarded-For {&amp;gt;X-Forwarded-For},{remote}
+   header_upstream X-Forwarded-Proto {scheme}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;3重新启动-caddy并查看状态&#34;&gt;3.重新启动 Caddy并查看状态&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;/etc/init.d/caddy restart
+/etc/init.d/caddy status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;七参考文章&#34;&gt;七、参考文章&lt;/h2&gt;
+&lt;p&gt;[Pihole]&lt;a href=&#34;https://ywnz.com/linuxyffq/4332.html&#34;&gt;https://ywnz.com/linuxyffq/4332.html&lt;/a&gt;
+[lighttpd]&lt;a href=&#34;https://azhuge233.com/%E6%9B%B4%E6%94%B9-pi-hole-%E7%BD%91%E9%A1%B5%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3%E5%92%8C%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81/#geng_gai_jian_ting_duan_kou&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;azhuge233.com&lt;/a&gt;
+
+[Doh]&lt;a href=&#34;https://blog.csdn.net/qq_39378221/article/details/103245108&#34;&gt;https://blog.csdn.net/qq_39378221/article/details/103245108&lt;/a&gt;
+[Caddy]&lt;a href=&#34;https://ning.su/posts/hugo-caddy-v2ray-on-ubuntu/#caddy&#34;&gt;https://ning.su/posts/hugo-caddy-v2ray-on-ubuntu/#caddy&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Filebrowser</title>
+      <link>https://jze.us/post/filebrowser/</link>
+      <pubDate>Wed, 04 Dec 2019 11:42:12 +0800</pubDate>
+      
+      <guid>https://jze.us/post/filebrowser/</guid>
+      <description>&lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+&lt;p&gt;File Browser 是一个基于 Web 的文件管理器。它可以使你随时随地的对设备的文件进行基本的管理操作，如：创建、删除、移动、复制等。它除了可以让你进行文件管理之外，还有一些其他的功能。它支持多个用户的管理，而且每个用户可以拥有自己可以访问的文件和权限。它还支持文件分享，就行网盘那样，你可以通过它来向你的朋友分享文件。你还可以用它来执行一些 Linux 命令，比如你想要在当前目录下克隆一个代码库，就可以用它来执行git等命令。&lt;/p&gt;
+&lt;h3 id=&#34;1安装-filebrowser&#34;&gt;1.安装 Filebrowser&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -fsSL https://filebrowser.xyz/get.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装目录：&lt;code&gt;/usr/local/bin/filebrowser&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2创建-filebrowser配置文件&#34;&gt;2.创建 Filebrowser配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir /etc/filebrowser
+mkdir /etc/filebrowser/filebrowser
+nano /etc/filebrowser/filebrowser.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3配置文件&#34;&gt;3.配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;: 18888,
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;baseURL&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;/admin&amp;#34;&lt;/span&gt;, //后缀名字例如：www.yale.ga/admin
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;address&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;,
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;stdout&amp;#34;&lt;/span&gt;,
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;database&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/www/yale/database.db&amp;#34;&lt;/span&gt;, //数据存放地址
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;root&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/www/yale&amp;#34;&lt;/span&gt;  //你想管理的目录
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4设置系统服务&#34;&gt;4.设置系统服务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;nano /etc/systemd/system/filebrowser.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;5系统服务配置文件&#34;&gt;5.系统服务配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Unit&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;File Browser
+&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target
+
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/filebrowser -c /etc/filebrowser/filebrowser.json
+
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Install&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;multi-user.target
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;6重新载入-system&#34;&gt;6.重新载入 system&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl daemon-reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;7服务管理&#34;&gt;7.服务管理&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;状态：systemctl status filebrowser
+启动：systemctl start filebrowser
+停止：systemctl stop filebrowser
+重启：systemctl restart filebrowser
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;8登录地址&#34;&gt;8.登录地址&lt;/h3&gt;
+&lt;p&gt;http://你的ip:1888/admin&lt;br&gt;
+帐号:&lt;code&gt;admin&lt;/code&gt;&lt;br&gt;
+密码:&lt;code&gt;admin&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;9启动-https&#34;&gt;9.启动 https&lt;/h3&gt;
+&lt;p&gt;启动 https后面会介绍，利用 Caddy 反代,添加一句，后面 Caddy 配置文件我会加进去。&lt;br&gt;
+&lt;code&gt;proxy /admin 127.0.0.1:18888&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;10通过-caddy-建立-ssl&#34;&gt;10.通过 caddy 建立 ssl&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;www.yale.ga
+&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  gzip
+  tls 123456212@mail.com
+  log /var/log/caddy/access.log
+  root /var/www/yale/public
+  proxy /admin 127.0.0.1:18888 &lt;span class=&#34;se&#34;&gt;\\&lt;/span&gt;反代 filebreowser
+
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;[参考1]&lt;a href=&#34;https://ljc.space/post/website-caddy-hugo-filebrowser/&#34;&gt;https://ljc.space/post/website-caddy-hugo-filebrowser/&lt;/a&gt;&lt;br&gt;
+[参考2]&lt;a href=&#34;https://233blog.com/post/26/&#34;&gt;https://233blog.com/post/26/&lt;/a&gt;&lt;br&gt;
+[参考3]&lt;a href=&#34;https://www.mivm.cn/filebrowser/&#34;&gt;https://www.mivm.cn/filebrowser/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>通过iptables实现国内 nat的IP端口数据包转发服务</title>
+      <link>https://jze.us/post/%E9%80%9A%E8%BF%87%E5%9B%BD%E5%86%85-nat-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%BD%AC%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%8A%A0%E9%80%9F%E7%9A%84%E7%9B%AE%E7%9A%84/</link>
+      <pubDate>Tue, 03 Dec 2019 05:41:53 +0000</pubDate>
+      
+      <guid>https://jze.us/post/%E9%80%9A%E8%BF%87%E5%9B%BD%E5%86%85-nat-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%BD%AC%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%8A%A0%E9%80%9F%E7%9A%84%E7%9B%AE%E7%9A%84/</guid>
+      <description>&lt;h2 id=&#34;一前言&#34;&gt;一、前言&lt;/h2&gt;
+&lt;p&gt;俗话说：『一如电信深似海，从此小鸡不好买。』
+家里是中国电信的网络，为了能跑满宽带（100M），不断尝试买不同的小鸡，通过试验，发现速度是CN2 GIA &amp;gt;CN2 &amp;gt; 163。家里是电信网络的人，选小鸡一定要上CN2，不要心存幻想。如果你是联通网络，那么恭喜你，随便买吧，都不会太差。&lt;/p&gt;
+&lt;p&gt;或者你不认命，用国内联通 nat 小鸡中转一下？这个教程是当时折腾国内中转方案的时候用到的转发方法，现在分享给你。&lt;/p&gt;
+&lt;h2 id=&#34;二iptables&#34;&gt;二、iptables&lt;/h2&gt;
+&lt;h3 id=&#34;1安装-iptables&#34;&gt;1.安装 iptables&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#停止防火墙&lt;/span&gt;
+systemctl stop firewalld.service
+&lt;span class=&#34;c1&#34;&gt;#关闭防火墙  &lt;/span&gt;
+systemctl disable firewalld.service
+&lt;span class=&#34;c1&#34;&gt;#通过 yum 安装 iptables  &lt;/span&gt;
+yum install iptables-services -y  
+&lt;span class=&#34;c1&#34;&gt;#启动 iptables&lt;/span&gt;
+systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; iptables.service  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2开启端口转发功能&#34;&gt;2.开启端口转发功能&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#添加net.ipv4.ip_forward = 1到sysctl.conf    &lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.ip_forward = 1&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo tee -a /etc/sysctl.conf
+&lt;span class=&#34;c1&#34;&gt;#查看&lt;/span&gt;
+sudo sysctl -p
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3查看本级ip地址&#34;&gt;3.查看本级ip地址&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ip a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;三iptales-规则&#34;&gt;三、iptales 规则&lt;/h2&gt;
+&lt;p&gt;请根据自己的需求选择&lt;/p&gt;
+&lt;h3 id=&#34;1同端口号配置方案&#34;&gt;1.同端口号配置方案&lt;/h3&gt;
+&lt;p&gt;使用本地服务器的10000端口来转发目标IP为1.1.1.1的10000端口&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;-A PREROUTING -p tcp -m tcp --dport &lt;span class=&#34;m&#34;&gt;10000&lt;/span&gt; -j DNAT --to-destination 1.1.1.1
+-A PREROUTING -p udp -m udp --dport &lt;span class=&#34;m&#34;&gt;10000&lt;/span&gt; -j DNAT --to-destination 1.1.1.1
+-A POSTROUTING -d 1.1.1.1 -p tcp -m tcp --dport &lt;span class=&#34;m&#34;&gt;10000&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+-A POSTROUTING -d 1.1.1.1 -p udp -m udp --dport &lt;span class=&#34;m&#34;&gt;10000&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2非同端口号配置方案&#34;&gt;2.非同端口号配置方案&lt;/h3&gt;
+&lt;p&gt;使用本地服务器的60000端口来转发目标IP为1.1.1.1的50000端口&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;-A PREROUTING -p tcp -m tcp --dport &lt;span class=&#34;m&#34;&gt;60000&lt;/span&gt; -j DNAT --to-destination 1.1.1.1:50000
+-A PREROUTING -p udp -m udp --dport &lt;span class=&#34;m&#34;&gt;60000&lt;/span&gt; -j DNAT --to-destination 1.1.1.1:50000
+-A POSTROUTING -d 1.1.1.1 -p tcp -m tcp --dport &lt;span class=&#34;m&#34;&gt;50000&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+-A POSTROUTING -d 1.1.1.1 -p udp -m udp --dport &lt;span class=&#34;m&#34;&gt;50000&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3多端口转发配置方案&#34;&gt;3.多端口转发配置方案&lt;/h3&gt;
+&lt;p&gt;将本地服务器的10000~65535转发至目标IP为1.1.1.1的10000~65535端口&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;-A PREROUTING -p tcp -m tcp --dport 10000:65535 -j DNAT --to-destination 1.1.1.1
+-A PREROUTING -p udp -m udp --dport 10000:65535 -j DNAT --to-destination 1.1.1.1
+-A POSTROUTING -d 1.1.1.1 -p tcp -m tcp --dport 10000:65535 -j SNAT --to-source 本地服务器IP
+-A POSTROUTING -d 1.1.1.1 -p udp -m udp --dport 10000:65535 -j SNAT --to-source 本地服务器IP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4删除端口&#34;&gt;4.删除端口&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#删除&lt;/span&gt;
+sudo iptables -t nat -D PREROUTING -p tcp --dport &lt;span class=&#34;m&#34;&gt;21998&lt;/span&gt; -j DNAT --to-destination 1.1.1.1:443
+sudo iptables -t nat -D PREROUTING -p udp --dport &lt;span class=&#34;m&#34;&gt;21998&lt;/span&gt; -j DNAT --to-destination 1.1.1.1:443
+sudo iptables -t nat -D POSTROUTING -p tcp -d 1.1.1.1 --dport &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+sudo iptables -t nat -D POSTROUTING -p udp -d 1.1.1.1 --dport &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; -j SNAT --to-source 本地服务器IP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四保存并重启&#34;&gt;四、保存并重启&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install iptables-persistent -y
+sudo netfilter-persistent save
+sudo netfilter-persistent start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;五查看当前运行端口&#34;&gt;五、查看当前运行端口&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;​iptables -t nat -nL
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;[参考1]&lt;a href=&#34;https://www.cloudiplc.com/knowledgebase.php?action=displayarticle&amp;amp;id=9&#34;&gt;https://www.cloudiplc.com/knowledgebase.php?action=displayarticle&amp;amp;id=9&lt;/a&gt;&lt;br&gt;
+[参考2]&lt;a href=&#34;https://moe.best/vps-domain/cloudiplc-nat.html&#34;&gt;https://moe.best/vps-domain/cloudiplc-nat.html&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

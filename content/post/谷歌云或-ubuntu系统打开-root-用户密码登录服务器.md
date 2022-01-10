@@ -31,9 +31,10 @@ nano /etc/ssh/sshd_config
 PermitRootLogin yes
 PasswordAuthentication yes
 ```
-{{% notice tip 提示 %}}  
+```
 修改完成后，你需要同时按 <kbd>ctrl</kbd> + <kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按<kbd>enter</kbd>保存。  
-{{% /notice %}}
+
+```
 
 ### 4.给root用户密码
 输入2次密码

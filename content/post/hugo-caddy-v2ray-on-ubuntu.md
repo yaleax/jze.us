@@ -13,9 +13,9 @@ weight: ''
 
 这个教程绝大部分内容你都可以复制粘贴，但是请仔细阅读代码框里面的备注，也就是`#`后面的文字。    
 
-{{% notice warning 特别提醒 %}}
+
 :u7981:必须修改代码里面的参数，否则不可能成功！有问题就留言吧，祝你好运。
-{{% /notice %}}
+
 
 ## 二、必要条件
 ### 1.  Ubuntu服务器
@@ -77,9 +77,12 @@ hugo -D
 ```
 
 ## 四、GitHub
-{{% notice tip 提示 %}}  
+```
 如果你以后不想通过 github管理文章，这里可以跳过。
-{{% /notice %}}
+```
+
+
+
 ### 1.新建一个Github仓库
 输完仓库名字后，按 <kbd>enter</kbd> 。
 ![](https://img.yaleax.com/Screen-Recording-2019-11-17-20-13-44.gif)
@@ -152,18 +155,23 @@ nano /etc/v2ray/config.json
 }
 ```
 
-{{% notice tip 提示 %}}  
-修改完成后，你需要同时按 <kbd>ctrl</kbd> + <kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按 <kbd>enter</kbd> 保存。  
-{{% /notice %}}
+```
+修改完成后，你需要同时按 <kbd>ctrl</kbd> + <kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按 <kbd>enter</kbd> 保存。
+```
+
+  
+
 
 ### 5.V2ray 控制命令
 
-{{% notice info 命令信息 %}}  
+```
 sudo systemctl start v2ray     # 启动v2ray  
 sudo systemctl status v2ray    # 查看v2ray状态  
 sudo systemctl stop v2ray      # 停止v2ray  
 sudo systemctl restart v2ray   # 重新启动v2ray
-{{% /notice %}}
+```
+
+
 
 ### 6.启动 V2ray并查看状态
 
@@ -238,17 +246,14 @@ systemctl start filebrowser
 
 ```
 
-{{% notice info 命令信息 %}}  
+```
+修改完成后，你需要同时按 <kbd>ctrl</kbd> + <kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按 <kbd>enter</kbd> 保存。
+```
 
-状态：systemctl status filebrowser  
-启动：systemctl start filebrowser  
-停止：systemctl stop filebrowser  
-重启：systemctl restart filebrowser  
-{{% /notice %}}
-### 8.登录地址  
 http://你的ip:1888/admin   
 帐号:`admin`  
 密码:`admin`  
+
 ### 9.启动 https    
 启动 https后面会介绍，利用 Caddy 反代,添加一句，后面 Caddy 配置文件我会加进去。  
 `proxy /admin 127.0.0.1:18888 \\反代 filebreowser`
@@ -298,9 +303,9 @@ suan.su
 }
 ```
 
-{{% notice tip 提示 %}}  
+``` 
 修改完成后，你需要同时按 <kbd>ctrl</kbd> + <kbd>x</kbd>来退出,再输入<kbd>y</kbd>确认保存，再按 <kbd>enter</kbd> 保存。  
-{{% /notice %}}
+```
 
 ### 5.Caddy文件说明
 
@@ -311,13 +316,15 @@ Caddy自动申请SSL证书位置：`/.caddy/acme/acme-v02.api.letsencrypt.org/si
 
 
 ### 6.Caddy 控制命令
-{{% notice info 命令信息 %}}  
+``` 
 启动：/etc/init.d/caddy start  
 停止：/etc/init.d/caddy stop  
 重启：/etc/init.d/caddy restart  
 查看状态：/etc/init.d/caddy status  
 查看Caddy启动日志：tail -f /tmp/caddy.log  
-{{% /notice %}}
+```
+
+
 
 ### 7.启动 Caddy服务并查询状态
 
