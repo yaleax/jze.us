@@ -89,11 +89,13 @@ nano config.yaml
 
 ```
 
-{{% notice info config.yaml配置 %}}
-
+```
 [去 GitHub 自己复制吧]<https://github.com/ConnersHua/Profiles/edit/master/Clash/Pro.yaml>
+```
 
-{{% /notice %}}
+
+
+
 
 ### 6.启动前
 
@@ -149,7 +151,7 @@ v2ray配置如下
     }
   ]
 }
-```    
+```
 ### [在线 json 编辑器](http://jsoneditoronline.org/)
 
 ## 五、关闭端口
