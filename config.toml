@@ -88,7 +88,7 @@ url = "/about"
   name = "愚道"
   bio = "求知若渴，虚心若愚"  # support markdown syntax
 # twitter = "XXX"  # https://twitter.com/XXX
-  github = "YALEAX"  # https://github.com/XXX
+  github = "YaleAX"  # https://github.com/XXX
 #  docker = "XXX"  # https://hub.docker.com/u/XXX
   email = "Qu@JzE.us"  # mailto:XX	X@mail.com
 
