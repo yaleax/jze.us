@@ -1,14 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub on 蜀山小筑</title>
-    <link>https://jze.us/tags/github/</link>
-    <description>Recent content in GitHub on 蜀山小筑</description>
+    <title>Posts on 蜀山小筑</title>
+    <link>https://jze.us/post/</link>
+    <description>Recent content in Posts on 蜀山小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>©2022 蜀山小筑.</copyright>
     <lastBuildDate>Sun, 17 Nov 2019 11:02:02 +0000</lastBuildDate>
     
-        <atom:link href="https://jze.us/tags/github/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jze.us/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

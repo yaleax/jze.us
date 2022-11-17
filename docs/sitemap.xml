@@ -1,49 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
     <loc>https://jze.us/about/</loc><lastmod>2021-04-06T18:33:51+00:00</lastmod></url><url>
-    <loc>https://jze.us/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/linux/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/netflix/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/wireguard/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/vpswarpnetflix/</loc><lastmod>2021-04-06T11:36:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/reconnecthuggit/</loc><lastmod>2020-07-28T00:07:38+08:00</lastmod></url><url>
-    <loc>https://jze.us/categories/</loc><lastmod>2020-07-28T00:07:38+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/github/</loc><lastmod>2020-07-28T00:07:38+08:00</lastmod></url><url>
-    <loc>https://jze.us/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</loc><lastmod>2020-07-28T00:07:38+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/zeit/</loc><lastmod>2020-03-22T23:08:34+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/dns64/</loc><lastmod>2020-03-21T20:36:25+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/dns64/</loc><lastmod>2020-03-21T20:36:25+08:00</lastmod></url><url>
-    <loc>https://jze.us/tags/k2p/</loc><lastmod>2020-03-21T19:57:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/k2ppadavan/</loc><lastmod>2020-03-21T19:57:27+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/dddebian/</loc><lastmod>2020-02-24T21:30:45-05:00</lastmod></url><url>
-    <loc>https://jze.us/post/doh/</loc><lastmod>2020-02-22T21:23:29-05:00</lastmod></url><url>
-    <loc>https://jze.us/post/filebrowser/</loc><lastmod>2019-12-04T11:42:12+08:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E9%80%9A%E8%BF%87%E5%9B%BD%E5%86%85-nat-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E8%BD%AC%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%8A%A0%E9%80%9F%E7%9A%84%E7%9B%AE%E7%9A%84/</loc><lastmod>2019-12-03T05:41:54+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E5%8D%8E%E7%A1%95%E8%80%81%E6%AF%9B%E5%AD%90%E5%9B%BA%E4%BB%B6%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E6%96%B9%E6%B3%95/</loc><lastmod>2019-12-01T10:46:43+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/vps-%E4%B8%8A%E9%9D%A2%E5%AE%89%E8%A3%85-emby-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E8%BF%9E%E6%8E%A5-google-drvie/</loc><lastmod>2019-11-30T11:24:03+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/n1%E7%9B%92%E5%AD%90%E5%AE%89%E8%A3%85-armbian-5-99-%E5%B9%B6%E5%AE%89%E8%A3%85-de_gwd/</loc><lastmod>2019-11-30T11:22:47+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/vps%E8%BF%9E%E6%8E%A5-google-drive/</loc><lastmod>2019-11-30T11:22:02+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/caddy/</loc><lastmod>2019-11-19T06:57:22+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E4%BD%BF%E7%94%A8-certbot%E6%89%8B%E5%8A%A8%E8%8E%B7%E5%8F%96-lets-encrypt-%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6caddy%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6/</loc><lastmod>2019-11-19T06:57:22+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/%E8%AF%81%E4%B9%A6/</loc><lastmod>2019-11-19T06:57:22+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/clash/</loc><lastmod>2019-11-18T08:37:55+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/clash-%E6%95%99%E7%A8%8B/</loc><lastmod>2019-11-18T08:37:55+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/ubuntu-18-04%E5%BF%AB%E9%80%9F%E5%BC%80%E5%90%AFgoogle-bbr/</loc><lastmod>2019-11-18T00:32:32+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/macos/</loc><lastmod>2019-11-17T11:23:42+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/macbook-pro%E7%94%B5%E8%84%91%E4%B8%A2%E5%A4%B1%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90/</loc><lastmod>2019-11-17T11:23:42+00:00</lastmod></url><url>
+    <loc>https://jze.us/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
+    <loc>https://jze.us/categories/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
+    <loc>https://jze.us/tags/github/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
     <loc>https://jze.us/post/git/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
     <loc>https://jze.us/post/github%E6%88%96-git%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E8%B0%B7%E6%AD%8C%E4%BA%91%E6%88%96-ubuntu%E7%B3%BB%E7%BB%9F%E6%89%93%E5%BC%80-root-%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc><lastmod>2019-11-17T10:39:34+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E8%A7%A3%E9%94%81-netflix/</loc><lastmod>2019-11-17T08:41:45+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/hello-world/</loc><lastmod>2019-11-10T11:07:48+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/hugo/</loc><lastmod>2019-11-10T02:09:16+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/hugo-caddy-v2ray-on-ubuntu/</loc><lastmod>2019-11-10T02:09:16+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/v2ray/</loc><lastmod>2019-11-10T02:09:16+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/netlify/</loc><lastmod>2019-11-09T12:00:51+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/stackbit/</loc><lastmod>2019-11-09T12:00:51+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E4%BD%BF%E7%94%A8stackbit-%E6%9D%A5%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc><lastmod>2019-11-09T12:00:51+00:00</lastmod></url><url>
-    <loc>https://jze.us/post/%E4%BD%BF%E7%94%A8hugo-github-netlify-netlify-cms%E6%9D%A5%E5%88%B6%E4%BD%9C%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</loc><lastmod>2019-11-09T06:46:37+00:00</lastmod></url><url>
-    <loc>https://jze.us/tags/%E5%8D%9A%E5%AE%A2/</loc><lastmod>2019-11-09T06:46:37+00:00</lastmod></url><url>
+    <loc>https://jze.us/post/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
+    <loc>https://jze.us/tags/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
+    <loc>https://jze.us/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</loc><lastmod>2019-11-17T11:02:04+00:00</lastmod></url><url>
     <loc>https://jze.us/archives/</loc><lastmod>2019-05-28T00:00:00+00:00</lastmod></url></urlset>
