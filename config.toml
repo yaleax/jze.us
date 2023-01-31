@@ -1,7 +1,7 @@
 baseURL = "https://jze.us"
 title = "蜀山小筑"
 theme = "hugo-notepadium"
-copyright = "©2023 蜀山小筑."
+copyright = "©2019-2023 蜀山小筑."
 
 languageCode = "zh"  # for the RSS generation
 defaultContentLanguage = "zh"
